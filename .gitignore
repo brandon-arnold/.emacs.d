@@ -1,0 +1,11 @@
+auto-save-list
+backups
+elpa
+eshell
+TAGS
+**/*.elc
+.org-id-locations
+ac-comphist.dat
+ruby
+server
+org
