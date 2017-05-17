@@ -12,18 +12,12 @@
 (require 'jade-mode)
 (add-to-list 'auto-mode-alist '("\\.styl\\'" . sws-mode))
 
-;;; JS Autocomplete
-(require 'auto-complete-config)
-(setq-default ac-sources (add-to-list 'ac-sources 'ac-source-dictionary))
-(global-auto-complete-mode t)
-(setq ac-auto-start 2)
-(setq ac-ignore-case nil)
-
-;;; JS Yasnippets
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/yasnippets/javascript-mode")
-(add-to-list 'ac-sources 'ac-source-yasnippet)
+;;; Web Yasnippets
+(yas/load-directory "~/Documents/yasnippet-snippets/js-mode")
+(yas/load-directory "~/Documents/yasnippet-snippets/css-mode")
+(yas/load-directory "~/Documents/yasnippet-snippets/html-mode")
+(yas/load-directory "~/Documents/yasnippet-snippets/web-mode")
+(yas/load-directory "~/Documents/yasnippet-snippets/yaml-mode")
 
 ;;; Web mode
 (defun my-web-mode-hook ()

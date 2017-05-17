@@ -1,11 +1,15 @@
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-  )
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(when (< emacs-major-version 24)
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
-(add-to-list 'load-path "~/.emacs.d/lisp")
+;; Dired+
+(require 'dired+)
+(setq diredp-hide-details-initially-flag t)
+
+;; WDired
+(setq wdired-allow-to-change-permissions t)
 
 ;; Use 'string' mode for regexes, instead of 'read' mode
 ;;  causing backslash hell
@@ -19,3 +23,16 @@
 ;; (see http://stackoverflow.com/questions/16732844/emacs-buffer-undo-limit)
 (add-hook 'shell-mode-hook 'buffer-disable-undo)
 
+;;; Autocomplete
+(require 'auto-complete-config)
+(setq-default ac-sources (add-to-list 'ac-sources 'ac-source-dictionary))
+(global-auto-complete-mode t)
+(setq ac-auto-start 2)
+(setq ac-ignore-case nil)
+
+;; yasnippet
+(require 'yasnippet)
+(yas/initialize)
+(add-to-list 'ac-sources 'ac-source-yasnippet)
+(yas/load-directory "~/Documents/yasnippet-snippets/markdown-mode")
+(yas/load-directory "~/Documents/yasnippet-snippets/emacs-lisp-mode")

@@ -1,7 +1,3 @@
-(setq url-proxy-services
-   '(("no_proxy" . "^\\(localhost\\|10.*\\)")
-     ("http" . "iss-americas-pitc-alpharettaz.proxy.corporate.ge.com:80")
-     ("https" . "iss-americas-pitc-alpharettaz.proxy.corporate.ge.com:80")))
 
 ;; Disable mouse-clicks, due to accidental touchpad interaction on laptop
 (dolist (k '([mouse-1] [down-mouse-1] [drag-mouse-1] [double-mouse-1] [triple-mouse-1]  

@@ -19,3 +19,7 @@
 
 ;;(require 'org-latex)
 
+;; (setq url-proxy-services
+;;   '(("no_proxy" . "^\\(localhost\\|10.*\\)")
+;;     ("http" . "iss-americas-pitc-alpharettaz.proxy.corporate.ge.com:80")
+;;     ("https" . "iss-americas-pitc-alpharettaz.proxy.corporate.ge.com:80")))

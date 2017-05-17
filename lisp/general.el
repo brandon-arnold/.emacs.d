@@ -5,7 +5,6 @@
 (setq tab-width 2)
 (setq-default indent-tabs-mode nil)
 (setq-default truncate-lines t)
-(setq wdired-allow-to-change-permissions t)
 (global-linum-mode)
 
 ;; Automatically update buffers

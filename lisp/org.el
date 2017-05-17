@@ -19,3 +19,6 @@
 ;;(setq org-agenda-files ('("~/Dropbox/Apps/MobileOrg/personal.org" "~/Dropbox/Apps/MobileOrg/work.org")))
 ;; (setq org-mobile-inbox-for-pull "~/Dropbox/Apps/MobileOrg/inbox.org")
 ;; (require 'org-depend) ;; for non-sibling dependent tasks
+
+;; Yasnippets
+(yas/load-directory "~/Documents/yasnippet-snippets/org-mode")
