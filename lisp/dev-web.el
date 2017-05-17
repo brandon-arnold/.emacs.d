@@ -6,6 +6,12 @@
 ;; JS Indentation
 (setq js-indent-level 2)
 
+;; Typescript
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+(require 'sws-mode)
+(require 'jade-mode)
+(add-to-list 'auto-mode-alist '("\\.styl\\'" . sws-mode))
+
 ;;; JS Autocomplete
 (require 'auto-complete-config)
 (setq-default ac-sources (add-to-list 'ac-sources 'ac-source-dictionary))
@@ -44,9 +50,11 @@
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
 (autoload 'web-mode "web-mode" "Web mode" t)
+(setq web-mode-content-types-alist
+      '(("jsx" . "\\.js[x]?\\'")))
 
-(global-set-key [f5] 'slime-js-reload)
-(add-hook 'js2-mode-hook
-	  (lambda ()
-	    (slime-js-minor-mode 1)))
+;; (global-set-key [f5] 'slime-js-reload)
+;; (add-hook 'js2-mode-hook
+;; 	  (lambda ()
+;; 	    (slime-js-minor-mode 1)))
 							
