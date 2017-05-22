@@ -34,5 +34,4 @@
 (require 'yasnippet)
 (yas/initialize)
 (add-to-list 'ac-sources 'ac-source-yasnippet)
-(yas/load-directory "~/Documents/yasnippet-snippets/markdown-mode")
-(yas/load-directory "~/Documents/yasnippet-snippets/emacs-lisp-mode")
+

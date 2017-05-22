@@ -23,7 +23,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Fira Code Retina" :foundry "outline" :slant normal :weight normal :height 130 :width normal))))
+ '(default ((t (:family "Fira Code Retina" :foundry "outline" :slant normal :weight normal :height 100 :width normal))))
  '(org-level-1 ((t (:inherit outline-1 :height 1.7 :line-height 1.0))))
  '(org-level-2 ((t (:inherit outline-2 :height 1.5 :line-height 0.7))))
  '(org-level-3 ((t (:inherit outline-3 :height 1.1 :line-height 0.3)))))
@@ -33,8 +33,8 @@
 (load-library "general")
 (load-library "system")
 (load-library "package-specific")
-(load-library "org")
-(load-library "dev-web")
+(load-library "org-settings")
+;; (load-library "dev-web")
 ;; (load-library "dev-cpp")
 ;; (load-library "dev-csharp")
 ;; (load-library "dev-lisp")

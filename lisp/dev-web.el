@@ -12,13 +12,6 @@
 (require 'jade-mode)
 (add-to-list 'auto-mode-alist '("\\.styl\\'" . sws-mode))
 
-;;; Web Yasnippets
-(yas/load-directory "~/Documents/yasnippet-snippets/js-mode")
-(yas/load-directory "~/Documents/yasnippet-snippets/css-mode")
-(yas/load-directory "~/Documents/yasnippet-snippets/html-mode")
-(yas/load-directory "~/Documents/yasnippet-snippets/web-mode")
-(yas/load-directory "~/Documents/yasnippet-snippets/yaml-mode")
-
 ;;; Web mode
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
