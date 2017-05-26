@@ -15,7 +15,7 @@
  '(minimap-window-location (quote right))
  '(package-selected-packages
    (quote
-    (typescript-mode yasnippet yaml-mode writeroom-mode web-mode visual-fill-column sublimity slime rtags powershell org macrostep dired+ w3 stylus-mode shorten sass-mode org-plus-contrib omnisharp mmm-mode minimap markdown-mode+ lui less-css-mode lcs jsx-mode json-mode js2-mode jade-mode iy-go-to-char hide-lines helm-flyspell helm-flycheck helm-css-scss haskell-mode gitlab gitconfig-mode fullscreen-mode free-keys emacs-eclim dockerfile-mode cpputils-cmake company color-theme coffee-mode cmake-project cmake-ide cmake-font-lock circe auto-compile auctex ace-window)))
+    (magit typescript-mode yasnippet yaml-mode writeroom-mode web-mode visual-fill-column sublimity slime rtags powershell org macrostep dired+ w3 stylus-mode shorten sass-mode org-plus-contrib omnisharp mmm-mode minimap markdown-mode+ lui less-css-mode lcs jsx-mode json-mode js2-mode jade-mode iy-go-to-char hide-lines helm-flyspell helm-flycheck helm-css-scss haskell-mode gitlab gitconfig-mode fullscreen-mode free-keys emacs-eclim dockerfile-mode cpputils-cmake company color-theme coffee-mode cmake-project cmake-ide cmake-font-lock circe auto-compile auctex ace-window)))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
