@@ -13,12 +13,13 @@
 (setq org-todo-keywords
   '((sequence "TODO" "WAITING" "|" "DONE" "DELEGATED")))
 
-(setq org-directory "~/Documents/EmacsOrg")
+(setq org-directory "~/Dropbox/Documents/EmacsOrg")
+(setq org-agenda-files '("~/Dropbox/Documents/EmacsOrg/personal.org" "~/Dropbox/Documents/EmacsOrg/work.org"))
+
+;; Org-Depend
 ;; (require 'org-depend) ;; for non-sibling dependent tasks
 
 ;; Org-Mobile 
 ;; (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-;; (setq org-agenda-files '("~/.emacs.d/org/personal.org" "~/.emacs.d/org/work.org"))
-;;(setq org-agenda-files ('("~/Dropbox/Apps/MobileOrg/personal.org" "~/Dropbox/Apps/MobileOrg/work.org")))
 ;; (setq org-mobile-inbox-for-pull "~/Dropbox/Apps/MobileOrg/inbox.org")
 

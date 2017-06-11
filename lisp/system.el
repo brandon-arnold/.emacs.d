@@ -7,7 +7,7 @@
              [mouse-5] [down-mouse-5] [drag-mouse-5] [double-mouse-5] [triple-mouse-5]))
   (global-unset-key k))
 
- (setq url-proxy-services
-   '(("no_proxy" . "^\\(localhost\\|10.*\\)")
-     ("http" . "iss-americas-pitc-alpharettaz.proxy.corporate.ge.com:80")
-     ("https" . "iss-americas-pitc-alpharettaz.proxy.corporate.ge.com:80")))
+;; (setq url-proxy-services
+;;   '(("no_proxy" . "^\\(localhost\\|10.*\\)")
+;;     ("http" . "iss-americas-pitc-alpharettaz.proxy.corporate.ge.com:80")
+;;     ("https" . "iss-americas-pitc-alpharettaz.proxy.corporate.ge.com:80")))
