@@ -31,9 +31,9 @@
 (setq ac-ignore-case nil)
 
 ;; yasnippet
-(require 'yasnippet)
-(yas/initialize)
-(add-to-list 'ac-sources 'ac-source-yasnippet)
+;; (require 'yasnippet)
+;; (yas/initialize)
+;; (add-to-list 'ac-sources 'ac-source-yasnippet)
 
 ;; Magit
-(require 'magit)
+;; (require 'magit)

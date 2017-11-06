@@ -10,8 +10,6 @@
 (setq org-catch-invisible-edits t)
 ;; (setq org-startup-indented t) ;; if off, M-x org-indent-mode (as per http://orgmode.org/manual/Clean-view.html)
 (setq org-archive-location "ARCHIVE_%s::")
-(setq org-todo-keywords
-  '((sequence "TODO" "WAITING" "|" "DONE" "DELEGATED")))
 
 (setq org-directory "~/Dropbox/Documents/EmacsOrg")
 (setq org-agenda-files '("~/Dropbox/Documents/EmacsOrg/personal.org" "~/Dropbox/Documents/EmacsOrg/work.org"))

@@ -11,6 +11,9 @@
 ;; Disable C-z for minimizing emacs
 (global-unset-key (kbd "C-z"))
 
+;; Replace selection with typed/yanked text.
+(delete-selection-mode 1)
+
 ;; Automatically update buffers
 (global-auto-revert-mode t)
 

@@ -19,12 +19,12 @@
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
+ ;; custom-set-faces was added by Custom.yasnippet 
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Fira Code" :foundry "outline" :slant normal :weight normal :height 110 :width normal)))))
-
+ '(default ((t (:family "Fira Code Retina" :foundry "outline" :slant normal :weight normal :height 130 :width normal)))))
+ 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (load-library "visual")
 (load-library "general")
