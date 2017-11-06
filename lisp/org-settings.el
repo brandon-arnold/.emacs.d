@@ -15,6 +15,14 @@
 
 (setq org-directory "~/Dropbox/Documents/EmacsOrg")
 (setq org-agenda-files '("~/Dropbox/Documents/EmacsOrg/personal.org" "~/Dropbox/Documents/EmacsOrg/work.org"))
+(setq org-clock-into-drawer "CLOCKING")
+
+(add-hook 'org-mode-hook
+          (lambda ()
+            (interactive)
+            (set-face-attribute 'org-todo nil :weight 'normal)
+            (set-face-attribute 'org-tag nil :weight 'normal)
+            (set-face-attribute 'org-done nil :weight 'normal)))
 
 ;; Org-Depend
 ;; (require 'org-depend) ;; for non-sibling dependent tasks
