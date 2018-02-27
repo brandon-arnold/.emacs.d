@@ -36,4 +36,4 @@
 ;; (add-to-list 'ac-sources 'ac-source-yasnippet)
 
 ;; Magit
-;; (require 'magit)
+(require 'magit)

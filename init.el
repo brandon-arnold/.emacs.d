@@ -15,15 +15,15 @@
  '(minimap-window-location (quote right))
  '(package-selected-packages
    (quote
-    (magit indium typescript-mode yasnippet yaml-mode writeroom-mode web-mode visual-fill-column sublimity slime rtags powershell org macrostep dired+ w3 stylus-mode shorten sass-mode org-plus-contrib omnisharp mmm-mode minimap markdown-mode+ lui less-css-mode lcs jsx-mode json-mode js2-mode jade-mode iy-go-to-char hide-lines helm-flyspell helm-flycheck helm-css-scss haskell-mode gitlab gitconfig-mode fullscreen-mode free-keys emacs-eclim dockerfile-mode cpputils-cmake company color-theme coffee-mode cmake-project cmake-ide cmake-font-lock circe auto-compile auctex ace-window)))
+    (elixir-yasnippets elixir-mode company-tern magit indium typescript-mode yasnippet yaml-mode web-mode visual-fill-column sublimity slime rtags powershell org macrostep dired+ shorten sass-mode org-plus-contrib omnisharp mmm-mode markdown-mode+ lui less-css-mode lcs json-mode js2-mode iy-go-to-char hide-lines helm-flyspell helm-flycheck helm-css-scss haskell-mode gitlab gitconfig-mode fullscreen-mode free-keys emacs-eclim dockerfile-mode cpputils-cmake company color-theme cmake-project cmake-ide cmake-font-lock circe auto-compile auctex ace-window)))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.yasnippet 
+ ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Fira Code Retina" :foundry "outline" :slant normal :weight normal :height 130 :width normal)))))
+ '(default ((t (:family "Fira Code" :foundry "outline" :slant normal :weight normal :height 110 :width normal)))))
  
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (load-library "visual")
@@ -32,6 +32,7 @@
 (load-library "package-specific")
 (load-library "org-settings")
 (load-library "dev-web")
+(load-library "dev-python")
 ;; (load-library "dev-cpp")
 ;; (load-library "dev-csharp")
 ;; (load-library "dev-lisp")

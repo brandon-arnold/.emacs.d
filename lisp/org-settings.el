@@ -12,9 +12,14 @@
 (setq org-archive-location "ARCHIVE_%s::")
 
 (setq org-directory "~/Dropbox/Documents/EmacsOrg")
-(setq org-agenda-files '("~/Dropbox/Documents/EmacsOrg/personal.org" "~/Dropbox/Documents/EmacsOrg/work.org"))
-(setq org-clock-into-drawer "CLOCKING")
+(setq org-agenda-files
+      '("~/Dropbox/Documents/EmacsOrg/personal.org"
+        "~/Dropbox/Documents/EmacsOrg/work.org"
+        "~/Dropbox/Documents/Work/Landdox/Customer/Venado/Enertia/2018-01-17_ContactImportEstimate.org"
+        "~/Dropbox/Documents/EmacsOrg/2018-02-11_AwsCognitoAuth0Comparison.org"))
 
+(setq org-clock-into-drawer "CLOCKING")
+(setq org-log-done 'time)
 (add-hook 'org-mode-hook
           (lambda ()
             (interactive)
