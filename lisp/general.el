@@ -29,6 +29,10 @@
 (global-set-key "\M-p" "\C-u1\M-v")
 (global-set-key "\M-m" 'iy-go-to-char)
 
+;; Show matching parens
+(setq show-paren-delay 0)
+(show-paren-mode 1)
+
 ;; Backups
 (setq backup-directory-alist '(("." . "~/Documents/EmacsBackup")))
 (setq backup-by-copying t)

@@ -3,15 +3,17 @@
 ;; Linux settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load-theme 'tsdh-dark t)
+;; (load-theme 'tsdh-dark t)
+(load-theme 'night-owl t)
 
+(require 'find-dired)
+(setq find-ls-option '("-print0 | xargs -0 ls -ld" . "-ld"))
 
-;;; Fira code
-;; This works when using emacs --daemon + emacsclient
+;; Fira Code ligatures
+;; Required when using emacs --daemon + emacsclient:
 (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
-;; This works when using emacs without server/client
+;; Required when using emacs without server/client:
 (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
-;; I haven't found one statement that makes both of the above situations work, so I use both for now
 
 (defconst fira-code-font-lock-keywords-alist
   (mapcar (lambda (regex-char-pair)
@@ -132,9 +134,7 @@
             ("[^:=]\\(:\\)[^:=]"           #Xe16c)
             ("[^\\+<>]\\(\\+\\)[^\\+<>]"   #Xe16d)
             ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
-
 (defun add-fira-code-symbol-keywords ()
   (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
-
 (add-hook 'prog-mode-hook
           #'add-fira-code-symbol-keywords)
