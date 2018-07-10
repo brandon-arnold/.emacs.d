@@ -1,15 +1,5 @@
+(provide 'fira-code-ligatures)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Linux settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (load-theme 'tsdh-dark t)
-(load-theme 'night-owl t)
-
-(require 'find-dired)
-(setq find-ls-option '("-print0 | xargs -0 ls -ld" . "-ld"))
-
-;; Fira Code ligatures
 ;; Required when using emacs --daemon + emacsclient:
 (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
 ;; Required when using emacs without server/client:
@@ -136,5 +126,4 @@
             ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
 (defun add-fira-code-symbol-keywords ()
   (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
-(add-hook 'prog-mode-hook
-          #'add-fira-code-symbol-keywords)
+(add-hook 'prog-mode-hook #'add-fira-code-symbol-keywords)

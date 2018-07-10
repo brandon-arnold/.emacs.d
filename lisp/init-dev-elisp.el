@@ -1,3 +1,6 @@
+(provide 'init-dev-elisp)
+
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 ;; Turn on Eldoc
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)

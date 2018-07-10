@@ -1,6 +1,4 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Org-mode macros and defaults
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(provide 'init-org)
 
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
@@ -23,8 +21,14 @@
         ("w" "Work Task" entry
          (file+headline "~/Dropbox/Documents/EmacsOrg/agenda/captured-work-tasks.org" "Work Tasks")
          "* TODO %?" :empty-lines 1)
+        ("d" "Dev Meeting Topic" entry
+         (file+headline "~/Dropbox/Documents/EmacsOrg/agenda/captured-dev-meeting-topics.org" "Dev Meeting Topic")
+         "* TODO %?" :empty-lines 1)
         ("j" "Journal Thoughts" entry
          (file+olp+datetree "~/Dropbox/Documents/EmacsOrg/agenda/captured-thoughts.org")
+         "* %?\nEntered on %U\n  %i\n  %a")
+        ("s" "Sleep Journal" entry
+         (file+olp+datetree "~/Dropbox/Documents/EmacsOrg/agenda/captured-sleep-journal.org")
          "* %?\nEntered on %U\n  %i\n  %a")))
 
 ;; clocking settings
@@ -39,8 +43,12 @@
             (set-face-attribute 'org-tag nil :weight 'normal)
             (set-face-attribute 'org-done nil :weight 'normal)))
 
-(eval-after-load "org" '(require 'ox-md nil t))
+;;(eval-after-load "org" '(require 'ox-md nil t))
+(eval-after-load "org" '(use-package ox-md))
 
 ;; Org-Mobile 
 ;; (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
 ;; (setq org-mobile-inbox-for-pull "~/Dropbox/Apps/MobileOrg/inbox.org")
+
+(if (eq system-type 'windows-nt)
+    (setq markdown-open-command "C:\\Program Files (x86)\\MarkdownPad 2\\MarkdownPad2.exe"))

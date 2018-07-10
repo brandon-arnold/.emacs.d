@@ -2,6 +2,13 @@
 (unless (server-running-p)
   (server-start))
 
+;; System-specific auto-generated custom files
+(cond ((eq system-type 'windows-nt) (setq custom-file "~/.emacs.d/lisp/custom-file-windows.el"))
+      ((eq system-type 'darwin) (setq custom-file "~/.emacs.d/lisp/custom-file-osx.el"))
+      (t (setq custom-file "~/.emacs.d/lisp/custom-file-linux.el")))
+(load custom-file)
+
+;; Emacs packages setup
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("org" . "http://orgmode.org/elpa/")
@@ -9,57 +16,44 @@
                          ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
+;; JWiegley's use-package macro setup
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("0c71e4d0b5ad79a7cb155f180adcc93f2fe5ae3d3a863de7d3a8c898087d890c" default)))
- '(menu-bar-mode nil)
- '(minimap-always-recenter nil)
- '(minimap-width-fraction 0.15)
- '(minimap-window-location (quote right))
- '(package-selected-packages
-   (quote
-    (ace-window alchemist auctex auto-compile circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern cpputils-cmake dired+ docker dockerfile-mode elixir-mode elixir-yasnippets expand-region flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flymd free-keys gitconfig-mode gitlab haskell-mode helm-css-scss helm-flycheck helm-flyspell hide-lines indium iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode+ mmm-mode night-owl-theme ob-elixir ob-typescript omnisharp org org-projectile-helm powershell prettier-js projectile rainbow-delimiters rtags sass-mode slime sublimity tide treemacs typescript-mode use-package visual-fill-column web-mode window-purpose xref-js2 yaml-mode yasnippet)))
- '(scroll-bar-mode t)
- '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Fira Code" :foundry "outline" :slant normal :weight normal :height 110 :width normal)))))
+;; Uncomment to benchmark, then start emacs and M-x benchmark-init/show-durations-tabulated
+;; (use-package benchmark-init
+;;   :ensure t
+;;   :config
+;;   ;; To disable collection of benchmark data after init is done.
+;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-(defun install-packages ()
-  "Install all required packages."
-  (interactive)
-  (unless package-archive-contents
-    (package-refresh-contents))
-  (dolist (package package-selected-packages)
-    (unless (package-installed-p package)
-      (package-install package))))
+;; Uncomment to ensure packages are installed on a new system's emacs setup
+;; (defun install-packages ()
+;;   "Install all required packages."
+;;   (interactive)
+;;   (unless package-archive-contents
+;;     (package-refresh-contents))
+;;   (dolist (package package-selected-packages)
+;;     (unless (package-installed-p package)
+;;       (package-install package))))
+;; (install-packages)
 
-(install-packages)
+(setq load-path (cons "~/.emacs.d/lisp/lib" load-path))
+(setq load-path (cons "~/.emacs.d/lisp" load-path))
+(require 'init-general)
+(require 'init-visual)
+(require 'init-package-specific)
+(require 'init-org)
+(require 'init-dev-web)
+(require 'init-dev-elisp)
+(require 'init-dev-elixir)
+(require 'functions)
+(require 'toggle-window-split)
 
-(add-to-list 'load-path "~/.emacs.d/lisp")
-(load-library "general")
-(load-library "visual")
-(load-library "system")
-(load-library "package-specific")
-(load-library "org-settings")
-(load-library "dev-web")
-(load-library "dev-elisp")
-(load-library "dev-elixir")
-;; (load-library "dev-python")
-;; (load-library "dev-cpp")
-;; (load-library "dev-csharp")
-;; (load-library "dev-lisp")
-;; (load-library "functions")
+;; (require 'init-shell)
+;; (require 'init-dev-python)
+;; (require 'init-dev-cpp)
+;; (require 'init-dev-csharp)
+;; (require 'init-dev-lisp)

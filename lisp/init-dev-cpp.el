@@ -1,3 +1,4 @@
+(provide 'init-dev-cpp)
 
 ;; C/++ Tags
 ;; http://www.emacswiki.org/emacs/BuildTags

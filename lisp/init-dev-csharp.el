@@ -1,3 +1,5 @@
+(require 'init-dev-csharp)
+
 ;; ;; Omnisharp-mode for Csharp development
 ;; (add-hook 'csharp-mode-hook 'omnisharp-mode)
 ;; ;;(setq omnisharp--curl-executable-path "C:/Program Files/cURL/bin/curl.exe")

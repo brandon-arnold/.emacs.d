@@ -1,3 +1,5 @@
+(provide 'functions)
+
 ;; In-place rename of file and buffer
 ;; http://steve.yegge.googlepages.com/my-dot-emacs-file
 (defun rename-file-and-buffer (new-name)
@@ -41,3 +43,36 @@
                     (substring myStr 17 20)
                     (substring myStr 20 32)))))
 
+;; Author: Brandon
+(defun sort-words (reverse beg end)
+  "Sort words in region alphabetically; argument means descending order.
+Called from a program, there are three arguments:
+REVERSE (non-nil means reverse order), BEG and END (region to sort).
+The variable `sort-fold-case' determines whether alphabetic case affects
+the sort order."
+  (interactive "P\nr")
+  (save-excursion
+    (save-restriction
+      (narrow-to-region beg end)
+      (replace-regexp "\\(\\s-\\)+" "\n" nil (point-min) (point-max) nil)
+      (goto-char (point-min))
+      (let ;; To make `end-of-line' and etc. to ignore fields.
+	  ((inhibit-field-text-motion t))
+	(sort-subr reverse 'forward-line 'end-of-line))
+      (replace-regexp "\n" " " nil (point-min) (point-max) nil))))
+
+;; Restart Emacsclient
+(defun launch-separate-emacs-in-terminal ()
+  (suspend-emacs "fg ; emacs -nw"))
+
+(defun launch-separate-emacs-under-x ()
+  (call-process "sh" nil nil nil "-c" "emacs &"))
+
+(defun restart-emacs ()
+  (interactive)
+  ;; We need the new emacs to be spawned after all kill-emacs-hooks
+  ;; have been processed and there is nothing interesting left
+  (let ((kill-emacs-hook (append kill-emacs-hook (list (if (display-graphic-p)
+                                                           #'launch-separate-emacs-under-x
+                                                         #'launch-separate-emacs-in-terminal)))))
+    (save-buffers-kill-emacs)))
