@@ -28,8 +28,8 @@
 ;; (setq ac-ignore-case nil)
 
 (use-package avy
-  :bind (("C-:" . avy-goto-char)
-         ("C-'" . avy-goto-char-2)))
+  :bind (("C-;" . avy-goto-char)
+         ("C-:" . avy-goto-char-2)))
 
 (use-package magit
   :ensure t
@@ -107,52 +107,57 @@
 ;; ;; 	    (local-set-key (kbd "C-z") 'undo)
 ;; ;;             ))
 
-;; Helm
-(use-package helm
-  :ensure t
-  :init
-  (setq helm-M-x-fuzzy-match t
-	helm-mode-fuzzy-match t
-	helm-buffers-fuzzy-matching t
-	helm-recentf-fuzzy-match t
-	helm-locate-fuzzy-match t
-	helm-semantic-fuzzy-match t
-	helm-imenu-fuzzy-match t
-	helm-completion-in-region-fuzzy-match t
-	helm-candidate-number-list 150
-	helm-split-window-in-side-p t
-	helm-move-to-line-cycle-in-source t
-	helm-echo-input-in-header-line t
-	helm-autoresize-max-height 0
-	helm-autoresize-min-height 20)
-  :config
-  (helm-mode 1)
-  :bind
-  ("M-x" . helm-M-x)
-  :bind*
-  ("C-x C-f" . helm-find-files))
-;;(global-set-key (kbd "M-x") 'helm-M-x)
+;; ;; Helm
+;; (use-package helm
+;;   :ensure t
+;;   :init
+;;   (setq helm-M-x-fuzzy-match t
+;; 	helm-mode-fuzzy-match t
+;; 	helm-buffers-fuzzy-matching t
+;; 	helm-recentf-fuzzy-match t
+;; 	helm-locate-fuzzy-match t
+;; 	helm-semantic-fuzzy-match t
+;; 	helm-imenu-fuzzy-match t
+;; 	helm-completion-in-region-fuzzy-match t
+;; 	helm-candidate-number-list 150
+;; 	helm-split-window-in-side-p t
+;; 	helm-move-to-line-cycle-in-source t
+;; 	helm-echo-input-in-header-line t
+;; 	helm-autoresize-max-height 0
+;; 	helm-autoresize-min-height 20)
+;;   :config
+;;   (helm-mode 1)
+;;   :bind
+;;   ("M-x" . helm-M-x)
+;;   :bind*
+;;   ("C-x C-f" . helm-find-files))
+;; ;;(global-set-key (kbd "M-x") 'helm-M-x)
 
 ;; Ivy
-;; (use-package ivy :ensure t
-;;   :diminish (ivy-mode . "")
-;; ;;  :bind
-;; ;;  (:map ivy-mode-map
-;; ;;   ("C-'" . ivy-avy))
-;;   :config
-;;   (ivy-mode 1)
-;;   ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
-;;   (setq ivy-use-virtual-buffers t)
-;;   ;; number of result lines to display
-;;   (setq ivy-height 10)
-;;   ;; does not count candidates
-;;   (setq ivy-count-format "")
-;;   ;; no regexp by default
-;;   (setq ivy-initial-inputs-alist nil)
-;;   ;; configure regexp engine.
-;;   (setq ivy-re-builders-alist
-;; 	;; allow input not in order
-;;         '((t   . ivy--regex-ignore-order))))
+(use-package ivy
+  :ensure t
+  :diminish (ivy-mode . "")
+  :bind (("C-s" . 'swiper)
+         ("M-x" . 'counsel-M-x)
+         ("C-x C-f" . 'counsel-find-file)
+         ("C-c C-r" . 'ivy-resume))
+;;  :bind
+;;  (:map ivy-mode-map
+;;   ("C-'" . ivy-avy))
+  :config
+  (ivy-mode 1)
+  ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
+  (setq ivy-use-virtual-buffers t)
+  ;; number of result lines to display
+  (setq ivy-height 10)
+  ;; does not count candidates
+  (setq ivy-count-format "")
+  ;; no regexp by default
+  (setq ivy-initial-inputs-alist nil)
+  ;; configure regexp engine.
+  (setq ivy-re-builders-alist
+	;; allow input not in order
+        '((t   . ivy--regex-ignore-order))))
 
 ;; Projectile
 (use-package projectile
@@ -160,7 +165,8 @@
 ;;  :init
 ;;  (setq projectile-require-project-root nil)
   :config
-  (projectile-mode 1))
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (projectile-mode +1))
 
 ;; Yas
 (use-package yasnippet
