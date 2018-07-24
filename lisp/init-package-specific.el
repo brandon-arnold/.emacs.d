@@ -52,12 +52,12 @@
         (display-buffer buffer '(display-buffer-same-window)))))
 
 ;; Purpose
-(use-package window-purpose
-  :config
-  (purpose-mode))
-(use-package window-purpose-x
-  :config
-  (purpose-x-magit-multi-on))
+;; (use-package window-purpose
+;;   :config
+;;   (purpose-mode))
+;; (use-package window-purpose-x
+;;   :config
+;;   (purpose-x-magit-multi-on))
 
 ;; ;; Artist Mode
 ;; (add-hook 'artist-mode-init-hook 
@@ -133,31 +133,53 @@
 ;;   ("C-x C-f" . helm-find-files))
 ;; ;;(global-set-key (kbd "M-x") 'helm-M-x)
 
-;; Ivy
+;; Ivy, Counsel, Swiper
+(use-package counsel
+  :after ivy
+  :bind (("C-x C-f" . counsel-find-file)
+         ("M-x" . counsel-M-x)
+         ("M-y" . counsel-yank-pop)))
 (use-package ivy
-  :ensure t
+  :defer 0.1
   :diminish (ivy-mode . "")
-  :bind (("C-s" . 'swiper)
-         ("M-x" . 'counsel-M-x)
-         ("C-x C-f" . 'counsel-find-file)
-         ("C-c C-r" . 'ivy-resume))
-;;  :bind
-;;  (:map ivy-mode-map
-;;   ("C-'" . ivy-avy))
-  :config
-  (ivy-mode 1)
+  :bind (;;("C-s" . swiper)
+         ;;("M-x" . counsel-M-x)
+         ;;("C-x C-f" . counsel-find-file)
+         ("C-c C-r" . ivy-resume)
+         ;;(:map ivy-mode-map)
+         ("C-x b" . ivy-switch-buffer)
+         ("C-x B" . ivy-switch-buffer-other-window)
+         ;;("C-'" . ivy-avy)
+         )
+  :custom
   ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
-  (setq ivy-use-virtual-buffers t)
-  ;; number of result lines to display
-  (setq ivy-height 10)
-  ;; does not count candidates
-  (setq ivy-count-format "")
+  (ivy-use-virtual-buffers t)
+  (ivy-height 10)
+  (ivy-count-format "")
+  (ivy-display-style 'fancy)
   ;; no regexp by default
-  (setq ivy-initial-inputs-alist nil)
+  ;; (ivy-initial-inputs-alist nil)
   ;; configure regexp engine.
-  (setq ivy-re-builders-alist
-	;; allow input not in order
-        '((t   . ivy--regex-ignore-order))))
+  (ivy-re-builders-alist
+   ;; allow input not in order
+   '((t   . ivy--regex-ignore-order)))
+  :config
+  (ivy-mode 1))
+(use-package ivy-rich
+  :after ivy
+  :custom
+  (ivy-virtual-abbreviate 'full
+                          ivy-rich-switch-buffer-align-virtual-buffer t)
+  (ivy-rich-path-style 'abbrev)
+  :config
+  (ivy-rich-mode 1)
+  (ivy-set-display-transformer 'ivy-switch-buffer
+                               'ivy-rich-switch-buffer-transformer))
+
+(use-package swiper
+  :after ivy
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)))
 
 ;; Projectile
 (use-package projectile
