@@ -21,6 +21,7 @@
     (setq org-directory (file-name-as-directory (concat dropbox-directory "Documents/EmacsOrg")))
     (setq org-default-notes-file (concat org-directory "agenda/captured-default.org"))
     (setq org-agenda-files (list (concat dropbox-directory "Documents/EmacsOrg/agenda")))
+    (setq org-agenda-window-setup 'only-window)
     (setq org-catch-invisible-edits t)
     ;; (setq org-startup-indented t)
     ;; if off, M-x org-indent-mode (as per http://orgmode.org/manual/Clean-view.html)
