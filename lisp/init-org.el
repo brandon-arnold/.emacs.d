@@ -27,29 +27,29 @@
     ;; if off, M-x org-indent-mode (as per http://orgmode.org/manual/Clean-view.html)
     ;; org capture templates
     (setq org-capture-templates
-      '(("t" "Personal Task" entry
-         (file+headline (concat dropbox-directory "Documents/EmacsOrg/agenda/captured-personal-tasks.org") "Personal Tasks")
+      `(("t" "Personal Task" entry
+         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-personal-tasks.org") "Personal Tasks")
          "* TODO %?" :empty-lines 1)
         ("w" "Work Task" entry
-         (file+headline (concat dropbox-directory "Documents/EmacsOrg/agenda/captured-work-tasks.org") "Work Tasks")
+         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-work-tasks.org") "Work Tasks")
          "* TODO %?" :empty-lines 1)
         ("h" "HCSG Task" entry
-         (file+headline (concat dropbox-directory "Documents/EmacsOrg/agenda/captured-hcsg-tasks.org") "HCSG Tasks")
+         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-hcsg-tasks.org") "HCSG Tasks")
          "* TODO %?" :empty-lines 1)
         ("d" "Dev Meeting Topic" entry
-         (file+headline (concat dropbox-directory "Documents/EmacsOrg/agenda/captured-dev-meeting-topics.org") "Dev Meeting Topic")
+         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-dev-meeting-topics.org") "Dev Meeting Topic")
          "* TODO %?" :empty-lines 1)
         ("j" "Journal Thoughts" entry
-         (file+olp+datetree (concat dropbox-directory "Documents/EmacsOrg/agenda/captured-thoughts.org"))
+         (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-thoughts.org"))
          "* %?\nEntered on %U\n  %i\n  %a")
         ("s" "Sleep Journal" entry
-         (file+olp+datetree (concat dropbox-directory "Documents/EmacsOrg/agenda/captured-sleep-journal.org"))
+         (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-sleep-journal.org"))
          "* %?\nEntered on %U\n  %i\n  %a")
         ("e" "EmacsATX notes" entry
-         (file+olp+datetree (concat dropbox-directory "Documents/EmacsOrg/agenda/emacs-atx.org"))
+         (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/emacs-atx.org"))
          "* %?\nEntered on %U\n  %i\n  %a")
         ("c" "Captured computing journal" entry
-         (file+olp+datetree (concat dropbox-directory "Documents/EmacsOrg/agenda/computing.org"))
+         (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/computing.org"))
          "* %?\nEntered on %U\n  %i\n  %a")))
     ;; org refile settings
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
