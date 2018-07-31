@@ -6,7 +6,7 @@
 
 (use-package org
   :ensure t
-  :mode ("\\.org\\'" . org-mode)
+  :mode ("\\.org\\(_archive\\)?\\'" . org-mode)
   :bind (("C-c l" . org-store-link)
          ("C-c c" . org-capture)
          ("C-c a" . org-agenda)
@@ -14,7 +14,8 @@
          ("C-'" . org-cycle-agenda-files)
          ("C-c b" . org-iswitchb)
          ("C-c j" . org-clock-goto)
-         ("C-c C-x C-o" . org-clock-out))
+         ("C-c C-x C-o" . org-clock-out)
+         ("C-c C-x C-r" . org-clock-report))
   :config
   (progn
     (setq org-archive-location "%s_archive::")
@@ -28,27 +29,27 @@
     ;; org capture templates
     (setq org-capture-templates
       `(("t" "Personal Task" entry
-         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-personal-tasks.org") "Personal Tasks")
+         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/rand-personal.org") "Personal Tasks")
          "* TODO %?" :empty-lines 1)
         ("w" "Work Task" entry
-         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-work-tasks.org") "Work Tasks")
+         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/rand-work.org") "Work Tasks")
          "* TODO %?" :empty-lines 1)
         ("h" "HCSG Task" entry
-         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-hcsg-tasks.org") "HCSG Tasks")
+         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/rand-hcsg.org") "HCSG Tasks")
          "* TODO %?" :empty-lines 1)
         ("d" "Dev Meeting Topic" entry
-         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-dev-meeting-topics.org") "Dev Meeting Topic")
+         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/dev-meeting.org") "Dev Meeting Topic")
          "* TODO %?" :empty-lines 1)
         ("j" "Journal Thoughts" entry
-         (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-thoughts.org"))
+         (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal.org"))
          "* %?\nEntered on %U\n  %i\n  %a")
         ("s" "Sleep Journal" entry
-         (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/captured-sleep-journal.org"))
+         (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/sleep.org"))
          "* %?\nEntered on %U\n  %i\n  %a")
         ("e" "EmacsATX notes" entry
          (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/emacs-atx.org"))
          "* %?\nEntered on %U\n  %i\n  %a")
-        ("c" "Captured computing journal" entry
+        ("c" "Computing captures" entry
          (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/computing.org"))
          "* %?\nEntered on %U\n  %i\n  %a")))
     ;; org refile settings
@@ -75,8 +76,7 @@
   :after (org))
 
 (use-package org-projectile
-  :bind (("C-c n p" . org-projectile-project-todo-completing-read)
-         ("C-c c" . org-capture))
+  :bind (("C-c n p" . org-projectile-project-todo-completing-read))
   :config
   (progn
     (setq org-projectile-projects-file

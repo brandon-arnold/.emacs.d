@@ -201,3 +201,8 @@
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this)))
+
+(defun my-flymd-browser-function (url)
+  (let ((browse-url-browser-function 'browse-url-firefox))
+    (browse-url url)))
+(setq flymd-browser-open-function 'my-flymd-browser-function)
