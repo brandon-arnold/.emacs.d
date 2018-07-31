@@ -49,14 +49,29 @@
 ;; (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 
 ;; Web mode
+(use-package web-mode
+  :mode ("\\.\\(html\\|s?css\\)\\'" . web-mode)
+  :init
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-enable-auto-pairing t)
+  (setq web-mode-enable-auto-expanding t)
+  (setq web-mode-enable-css-colorization t))
+
+;; (use-package web-beautify
+;;   :commands (web-beautify-css
+;;              web-beautify-css-buffer
+;;              web-beautify-html
+;;              web-beautify-html-buffer
+;;              web-beautify-js
+;;              web-beautify-js-buffer))
+
 ;; (autoload 'web-mode "web-mode" "Web mode" t)
 ;; (setq web-mode-content-types-alist
 ;;       '(("jsx" . "\\.js[x]?\\'")))
 ;; (defun my-web-mode-hook ()
 ;;   "Hooks for Web mode."
-;;   (setq web-mode-markup-indent-offset 2)
-;;   (setq web-mode-css-indent-offset 2)
-;;   (setq web-mode-code-indent-offset 2)
 ;;   )
 ;; (add-hook 'web-mode-hook  'my-web-mode-hook)
 
