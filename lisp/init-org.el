@@ -1,5 +1,7 @@
 (provide 'init-org)
 
+(require 'sa-org-functions)
+
 (if (eq system-type 'windows-nt)
     (setq dropbox-directory (file-name-as-directory "~/Dropbox (Personal)"))
   (setq dropbox-directory (file-name-as-directory "~/Dropbox")))
@@ -11,7 +13,7 @@
          ("C-c c" . org-capture)
          ("C-c a" . org-agenda)
          ("C-," . org-cycle-agenda-files)
-         ("C-'" . org-cycle-agenda-files)
+         ;;("C-'" . org-cycle-agenda-files)
          ("C-c b" . org-iswitchb)
          ("C-c j" . org-clock-goto)
          ("C-c C-x C-o" . org-clock-out)
@@ -24,6 +26,10 @@
     (setq org-agenda-files (list (concat dropbox-directory "Documents/EmacsOrg/agenda")))
     (setq org-agenda-window-setup 'only-window)
     (setq org-catch-invisible-edits t)
+    (setq org-agenda-text-search-extra-files
+          (append
+           (sa-find-org-file-recursively "~/Dropbox/Documents/EmacsOrg/agenda/" ".org_archive")
+     ))
     ;; (setq org-startup-indented t)
     ;; if off, M-x org-indent-mode (as per http://orgmode.org/manual/Clean-view.html)
     ;; org capture templates

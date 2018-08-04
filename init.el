@@ -16,7 +16,7 @@
  '(minimap-window-location (quote right))
  '(package-selected-packages
    (quote
-    (htmlize ace-window alchemist auctex auto-compile benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern counsel cpputils-cmake dired+ docker dockerfile-mode elixir-mode expand-region flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-core helm-css-scss helm-flycheck helm-flyspell hide-lines indium ivy ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode+ mmm-mode night-owl-theme ob-elixir ob-typescript omnisharp org org-projectile org-projectile-helm paredit powershell prettier-js projectile rainbow-delimiters rtags sass-mode slime smartparens sublimity swiper tide treemacs typescript-mode use-package visual-fill-column web-mode xref-js2 yaml-mode yasnippet yasnippet-snippets)))
+    (ace-window alchemist auctex auto-compile benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern counsel cpputils-cmake dired+ docker dockerfile-mode elixir-mode expand-region flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-core helm-css-scss helm-flycheck helm-flyspell hide-lines indium ivy ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode+ mmm-mode night-owl-theme ob-elixir ob-typescript omnisharp org org-projectile org-projectile-helm paredit powershell prettier-js projectile rainbow-delimiters rtags sass-mode slime smartparens sublimity swiper tide treemacs typescript-mode use-package visual-fill-column web-mode xref-js2 yaml-mode yasnippet yasnippet-snippets)))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -67,13 +67,13 @@
 (require 'init-general)
 (require 'init-visual)
 (require 'init-package-specific)
+(require 'init-dired)
 (require 'init-org)
 (require 'init-dev-web)
 (require 'init-dev-elisp)
 (require 'init-dev-elixir)
 (require 'functions)
 (require 'toggle-window-split)
-
 ;; (require 'init-shell)
 ;; (require 'init-dev-python)
 ;; (require 'init-dev-cpp)

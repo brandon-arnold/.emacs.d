@@ -1,15 +1,5 @@
 (provide 'init-package-specific)
 
-(use-package dired+
-  :config
-  (setq diredp-hide-details-initially-flag t))
-
-(use-package 'find-dired
-  :disabled t
-  :config (setq find-ls-option '("-print0 | xargs -0 ls -ld" . "-ld")))
-
-(setq wdired-allow-to-change-permissions t)
-
 ;; Use 'string' mode for regexes, instead of 'read' mode
 ;;  causing backslash hell
 (setq reb-re-syntax 'string)
@@ -142,15 +132,11 @@
 (use-package ivy
   :defer 0.1
   :diminish (ivy-mode . "")
-  :bind (;;("C-s" . swiper)
-         ;;("M-x" . counsel-M-x)
-         ;;("C-x C-f" . counsel-find-file)
-         ("C-c C-r" . ivy-resume)
+  :bind (("C-c C-r" . ivy-resume)
          ;;(:map ivy-mode-map)
          ("C-x b" . ivy-switch-buffer)
          ("C-x B" . ivy-switch-buffer-other-window)
-         ;;("C-'" . ivy-avy)
-         )
+         ("C-'" . ivy-avy))
   :custom
   ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
   (ivy-use-virtual-buffers t)
@@ -206,3 +192,7 @@
   (let ((browse-url-browser-function 'browse-url-firefox))
     (browse-url url)))
 (setq flymd-browser-open-function 'my-flymd-browser-function)
+
+(use-package company
+  :init
+  (global-company-mode))

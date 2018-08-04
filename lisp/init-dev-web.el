@@ -1,24 +1,50 @@
 (provide 'init-dev-web)
 
 (use-package js2-mode
-  :mode "\\.js\\'"
+  :init
+  (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
+  (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
   :config
-  (use-package js2-refactor
-    :ensure t)
-  (use-package xref-js2
-    :ensure t)
-  (use-package prettier-js
-    :ensure t)
+  ;; (use-package js2-refactor)
+  ;; (use-package prettier-js)
+  ;; (use-package xref-js2)
+  (define-key js2-mode-map (kbd "M-.") nil)
   (setq js-indent-level 2)
   (setq js-switch-indent-offset 2)
   (setq-default js2-strict-trailing-comma-warning nil)
   (add-hook 'js2-mode-hook #'js2-refactor-mode)
   (js2r-add-keybindings-with-prefix "C-c C-r")
-  (define-key js2-mode-map (kbd "C-k") #'js2r-kill)
-  (add-hook 'js2-mode-hook 'prettier-js-mode)
-  (add-hook 'web-mode-hook 'prettier-js-mode))
+  (define-key js2-mode-map (kbd "C-k") #'js2r-kill))
 
-;; tide, a Typescript IDE
+(use-package rjsx-mode
+  :mode ("\\.js$" . rjsx-mode))
+
+(use-package prettier-js
+  :init
+  (defun enable-minor-mode (my-pair)
+    "Enable minor mode if filename match the regexp.  MY-PAIR is a cons cell (regexp . minor-mode)."
+    (if (buffer-file-name)
+        (if (string-match (car my-pair) buffer-file-name)
+            (funcall (cdr my-pair)))))
+  (add-hook 'js-mode-hook #'(lambda ()
+                              (enable-minor-mode
+                               '("\\.jsx?\\'" . prettier-js-mode)))))
+
+(use-package flycheck
+  :defer 2
+  :init
+  (add-hook 'js-mode-hook 'flycheck-mode))
+
+(use-package flycheck-popup-tip
+  :init
+  (with-eval-after-load 'flycheck
+    (flycheck-popup-tip-mode)))
+
+(use-package flycheck-color-mode-line
+  :init
+  (eval-after-load "flycheck"
+    '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)))
+
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
@@ -36,19 +62,26 @@
   :config
   (setq typescript-indent-level 2
         typescript-expr-indent-offset 2)
-  ;; aligns annotation to the right hand side
   (setq company-tooltip-align-annotations t)
-  ;; formats the buffer before saving
   (add-hook 'before-save-hook 'tide-format-before-save)
   (add-hook 'typescript-mode-hook #'setup-tide-mode))
-;; (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 
-;; Tern
-;; (add-to-list 'load-path "~/opt/tern/emacs/")
-;; (autoload 'tern-mode "tern.el" nil t)
+(use-package js2-refactor
+  :init
+  (add-hook 'js2-mode-hook #'js2-refactor-mode)
+  :config
+  (setq js2-skip-preprocessor-directives t)
+  (js2r-add-keybindings-with-prefix "C-c C-m"))
+
+(add-to-list 'load-path "~/opt/tern/emacs")
 ;; (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+(use-package company-tern
+  :init
+  (add-to-list 'company-backends 'company-tern)
+  (add-hook 'js-mode-hook (lambda ()
+                             (tern-mode)
+                             (company-mode))))
 
-;; Web mode
 (use-package web-mode
   :mode ("\\.\\(html\\|s?css\\)\\'" . web-mode)
   :init
@@ -58,25 +91,3 @@
   (setq web-mode-enable-auto-pairing t)
   (setq web-mode-enable-auto-expanding t)
   (setq web-mode-enable-css-colorization t))
-
-;; (use-package web-beautify
-;;   :commands (web-beautify-css
-;;              web-beautify-css-buffer
-;;              web-beautify-html
-;;              web-beautify-html-buffer
-;;              web-beautify-js
-;;              web-beautify-js-buffer))
-
-;; (autoload 'web-mode "web-mode" "Web mode" t)
-;; (setq web-mode-content-types-alist
-;;       '(("jsx" . "\\.js[x]?\\'")))
-;; (defun my-web-mode-hook ()
-;;   "Hooks for Web mode."
-;;   )
-;; (add-hook 'web-mode-hook  'my-web-mode-hook)
-
-;; Slime
-;; (global-set-key [f5] 'slime-js-reload)
-;; (add-hook 'js2-mode-hook
-;; 	  (lambda ()
-;; 	    (slime-js-minor-mode 1)))

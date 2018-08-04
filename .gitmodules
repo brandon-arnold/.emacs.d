@@ -1,0 +1,3 @@
+[submodule "lisp/dired-hacks"]
+	path = lisp/dired-hacks
+	url = https://github.com/Fuco1/dired-hacks
