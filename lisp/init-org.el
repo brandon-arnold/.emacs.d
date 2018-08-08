@@ -20,6 +20,7 @@
          ("C-c C-x C-r" . org-clock-report))
   :config
   (progn
+    (org-super-agenda-mode)
     (setq org-archive-location "%s_archive::")
     (setq org-directory (file-name-as-directory (concat dropbox-directory "Documents/EmacsOrg")))
     (setq org-default-notes-file (concat org-directory "agenda/captured-default.org"))
@@ -29,7 +30,19 @@
     (setq org-agenda-text-search-extra-files
           (append
            (sa-find-org-file-recursively "~/Dropbox/Documents/EmacsOrg/agenda/" ".org_archive")
-     ))
+           ))
+    (setq org-super-agenda-groups
+      '((:name "Landdox Deadlines Today"
+               :and (:deadline today :category "work"))
+        (:name "Landdox Scheduled Today"
+               :and (:scheduled today :category "work"))
+        (:name "Personal Due Today"
+               :and (:category "personal" :scheduled today)
+               :and (:category "personal" :deadline today))
+        (:name "HCSG Due Today"
+               :and (:category "hcsg" :scheduled today)
+               :and (:category "hcsg" :deadline today))
+        (:name none :anything)))
     ;; (setq org-startup-indented t)
     ;; if off, M-x org-indent-mode (as per http://orgmode.org/manual/Clean-view.html)
     ;; org capture templates

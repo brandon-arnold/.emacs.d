@@ -128,7 +128,8 @@
   :after ivy
   :bind (("C-x C-f" . counsel-find-file)
          ("M-x" . counsel-M-x)
-         ("M-y" . counsel-yank-pop)))
+         ("M-y" . counsel-yank-pop)
+         ("C-h f" . counsel-describe-function)))
 (use-package ivy
   :defer 0.1
   :diminish (ivy-mode . "")
@@ -141,7 +142,7 @@
   ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
   (ivy-use-virtual-buffers t)
   (ivy-height 10)
-  (ivy-count-format "")
+  (ivy-count-format "(%d/%d) ")
   (ivy-display-style 'fancy)
   ;; no regexp by default
   ;; (ivy-initial-inputs-alist nil)
