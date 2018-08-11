@@ -25,21 +25,22 @@
   :ensure t
   :config
   ;; see https://github.com/magit/magit/issues/2541
-  (defun magit-display-buffer-traditional (buffer)
-    "Display BUFFER the way this has traditionally been done."
-    (display-buffer
-     buffer (if (and (derived-mode-p 'magit-mode)
-                     (not (memq (with-current-buffer buffer major-mode)
-                                '(magit-process-mode
-                                  magit-revision-mode
-                                  magit-diff-mode
-                                  magit-stash-mode
-                                  magit-status-mode))))
-                '(display-buffer-same-window)
-              nil))) ; display in another window
-  (setq magit-display-buffer-function
-      (lambda (buffer)
-        (display-buffer buffer '(display-buffer-same-window)))))
+  ;; (defun magit-display-buffer-traditional (buffer)
+  ;;   "Display BUFFER the way this has traditionally been done."
+  ;;   (display-buffer
+  ;;    buffer (if (and (derived-mode-p 'magit-mode)
+  ;;                    (not (memq (with-current-buffer buffer major-mode)
+  ;;                               '(magit-process-mode
+  ;;                                 magit-revision-mode
+  ;;                                 magit-diff-mode
+  ;;                                 magit-stash-mode
+  ;;                                 magit-status-mode))))
+  ;;               '(display-buffer-same-window)
+  ;;             nil))) ; display in another window
+  ;; (setq magit-display-buffer-function
+  ;;     (lambda (buffer)
+  ;;       (display-buffer buffer '(display-buffer-same-window))))
+  )
 
 ;; Purpose
 ;; (use-package window-purpose

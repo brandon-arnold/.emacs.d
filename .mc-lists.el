@@ -5,10 +5,12 @@
       '(
         org-cycle
         org-self-insert-command
+        org-yank
         paredit-forward-delete
         paredit-semicolon
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        org-metaup
         ))
