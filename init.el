@@ -16,7 +16,7 @@
  '(minimap-window-location (quote right))
  '(package-selected-packages
    (quote
-    (org-tree-slide ivy-hydra org-super-agenda rjsx-mode ace-window alchemist auctex auto-compile benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern counsel cpputils-cmake dired+ docker dockerfile-mode elixir-mode expand-region flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-core helm-css-scss helm-flycheck helm-flyspell hide-lines indium ivy ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode+ mmm-mode night-owl-theme ob-elixir ob-typescript omnisharp org org-projectile org-projectile-helm paredit powershell prettier-js projectile rainbow-delimiters rtags sass-mode slime smartparens sublimity swiper tide treemacs typescript-mode use-package visual-fill-column web-mode xref-js2 yaml-mode yasnippet yasnippet-snippets)))
+    (ace-window alchemist auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern counsel cpputils-cmake dired+ docker dockerfile-mode elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-core helm-css-scss helm-flycheck helm-flyspell hide-lines hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode markdown-mode+ mmm-mode multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit powershell prettier-js projectile rainbow-delimiters rjsx-mode rtags sass-mode slime smartparens sublimity swiper tern tide treemacs typescript-mode use-package visual-fill-column web-mode xref-js2 yaml-mode yasnippet yasnippet-snippets)))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -37,6 +37,9 @@
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 ;; JWiegley's use-package macro setup
 (unless (package-installed-p 'use-package)
