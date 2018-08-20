@@ -23,6 +23,7 @@
 
 (use-package magit
   :ensure t
+  :bind (("C-x g" . magit))
   :config
   ;; see https://github.com/magit/magit/issues/2541
   ;; (defun magit-display-buffer-traditional (buffer)
