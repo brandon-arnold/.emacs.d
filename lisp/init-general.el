@@ -55,3 +55,8 @@
 ;; Turn off annoying windows ding
 (if (eq system-type 'windows-nt)
     (setq ring-bell-function 'ignore))
+
+;; Use 'string' mode for regexes, instead of 'read' mode
+;;  causing backslash hell
+(setq reb-re-syntax 'string)
+

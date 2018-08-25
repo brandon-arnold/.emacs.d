@@ -12,5 +12,6 @@
 
 (setq mc/cmds-to-run-once
       '(
+        counsel-M-x
         org-metaup
         ))
