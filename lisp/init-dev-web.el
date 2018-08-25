@@ -7,7 +7,7 @@
   :config
   ;; (use-package js2-refactor)
   ;; (use-package prettier-js)
-  ;; (use-package xref-js2)
+  (use-package xref-js2)
   (define-key js2-mode-map (kbd "M-.") nil)
   (setq js-indent-level 2)
   (setq js-switch-indent-offset 2)
@@ -17,7 +17,9 @@
   (define-key js2-mode-map (kbd "C-k") #'js2r-kill))
 
 (use-package rjsx-mode
-  :mode ("\\.js$" . rjsx-mode))
+  :mode ("\\.js$" . rjsx-mode)
+  :config
+  (use-package xref-js2))
 
 (use-package prettier-js
   :init
