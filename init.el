@@ -69,6 +69,7 @@
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 (require 'init-general)
 (require 'init-visual)
+(require 'init-ivy)
 (require 'init-package-specific)
 (require 'init-dired)
 (require 'init-org)
