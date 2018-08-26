@@ -78,7 +78,3 @@
 (require 'init-dev-elixir)
 (require 'functions)
 (require 'toggle-window-split)
-;; (require 'init-dev-python)
-;; (require 'init-dev-cpp)
-;; (require 'init-dev-csharp)
-;; (require 'init-dev-lisp)
