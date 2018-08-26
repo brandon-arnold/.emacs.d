@@ -67,6 +67,7 @@
 
 (setq load-path (cons "~/.emacs.d/lisp/lib" load-path))
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
+(setq load-path (cons "~/.emacs.d/lisp/alchemist" load-path))
 (require 'init-general)
 (require 'init-visual)
 (require 'init-ivy)
