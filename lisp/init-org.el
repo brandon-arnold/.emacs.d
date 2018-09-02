@@ -21,6 +21,7 @@
   :config
   (progn
     (org-super-agenda-mode)
+    (setq org-agenda-clockreport-parameter-plist (plist-put org-agenda-clockreport-parameter-plist :fileskip0 t))
     (setq org-archive-location "%s_archive::")
     (setq org-directory (file-name-as-directory (concat dropbox-directory "Documents/EmacsOrg")))
     (setq org-default-notes-file (concat org-directory "agenda/captured-default.org"))
