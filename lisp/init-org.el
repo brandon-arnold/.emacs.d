@@ -13,7 +13,6 @@
          ("C-c c" . org-capture)
          ("C-c a" . org-agenda)
          ("C-," . org-cycle-agenda-files)
-         ;;("C-'" . org-cycle-agenda-files)
          ("C-c b" . org-iswitchb)
          ("C-c j" . org-clock-goto)
          ("C-c C-x C-o" . org-clock-out)
@@ -22,31 +21,41 @@
   (progn
     (org-super-agenda-mode)
     (setq org-agenda-clockreport-parameter-plist (plist-put org-agenda-clockreport-parameter-plist :fileskip0 t))
+    (setq org-agenda-clockreport-parameter-plist (org-plist-delete org-agenda-clockreport-parameter-plist :link))
     (setq org-archive-location "%s_archive::")
     (setq org-directory (file-name-as-directory (concat dropbox-directory "Documents/EmacsOrg")))
     (setq org-default-notes-file (concat org-directory "agenda/captured-default.org"))
     (setq org-agenda-files (list (concat dropbox-directory "Documents/EmacsOrg/agenda")))
     (setq org-agenda-window-setup 'only-window)
     (setq org-catch-invisible-edits t)
+    (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+    (setq org-refile-use-outline-path 'file)
+    (setq org-outline-path-complete-in-steps nil)
+    (setq org-refile-allow-creating-parent-nodes 'confirm)
+    (setq org-clock-into-drawer "CLOCKING")
+    (setq org-log-done 'time)
     (setq org-agenda-text-search-extra-files
           (append
            (sa-find-org-file-recursively "~/Dropbox/Documents/EmacsOrg/agenda/" ".org_archive")
            ))
-    ;; (setq org-super-agenda-groups
-    ;;   '((:name "Landdox Deadlines Today"
-    ;;            :and (:deadline today :category "work"))
-    ;;     (:name "Landdox Scheduled Today"
-    ;;            :and (:scheduled today :category "work"))
-    ;;     (:name "Personal Due Today"
-    ;;            :and (:category "personal" :scheduled today)
-    ;;            :and (:category "personal" :deadline today))
-    ;;     (:name "HCSG Due Today"
-    ;;            :and (:category "hcsg" :scheduled today)
-    ;;            :and (:category "hcsg" :deadline today))
-    ;;     (:name none :anything)))
-    ;; (setq org-startup-indented t)
-    ;; if off, M-x org-indent-mode (as per http://orgmode.org/manual/Clean-view.html)
-    ;; org capture templates
+    (add-to-list 'org-agenda-custom-commands
+             '("W" "Weekly review"
+               agenda ""
+               ((org-agenda-span 'week)
+                (org-agenda-start-on-weekday 0)
+                (org-agenda-start-with-log-mode t)
+                (org-agenda-skip-function
+                 '(org-agenda-skip-entry-if 'nottodo 'done))
+                )))
+    (add-to-list 'org-agenda-custom-commands
+             '("D" "EOD"
+               agenda ""
+               ((org-agenda-span 'day)
+                (org-agenda-start-with-log-mode t)
+                (org-agenda-skip-function
+                 '(org-agenda-skip-entry-if 'nottodo 'done))
+                (org-agenda-start-with-clockreport-mode t)
+                )))
     (setq org-capture-templates
       `(("t" "Personal Task" entry
          (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/rand-personal.org") "Personal Tasks")
@@ -71,27 +80,8 @@
          "* %?\nEntered on %U\n  %i\n  %a")
         ("c" "Computing captures" entry
          (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/computing.org"))
-         "* %?\nEntered on %U\n  %i\n  %a")))
-    ;; org refile settings
-    (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
-    (setq org-refile-use-outline-path 'file)
-    (setq org-outline-path-complete-in-steps nil)
-    (setq org-refile-allow-creating-parent-nodes 'confirm)
-    ;; clocking settings
-    (setq org-clock-into-drawer "CLOCKING")
-    (setq org-log-done 'time)))
+         "* %?\nEntered on %U\n  %i\n  %a")))))
 
-;; get rid of heavily weighted TODOs, breaking the org tables
-(add-hook 'org-mode-hook
-          (lambda ()
-            (interactive)
-            (set-face-attribute 'org-todo nil :weight 'normal)
-            (set-face-attribute 'org-tag nil :weight 'normal)
-            (set-face-attribute 'org-done nil :weight 'normal)))
-
-;; Ox-md for markdown
-;;(eval-after-load "org" '(require 'ox-md nil t))
-;;(eval-after-load "org" '(use-package ox-md))
 (use-package ox-md
   :after (org))
 
@@ -107,13 +97,7 @@
 (if (eq system-type 'windows-nt)
     (setq markdown-open-command "C:\\Program Files (x86)\\MarkdownPad 2\\MarkdownPad2.exe"))
 
-;; Org babel evaluators
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
    (js . t)))
-
-;; Org-Mobile 
-;; (setq org-mobile-directory (concat dropbox-directory "Apps/MobileOrg")
-;; (setq org-mobile-inbox-for-pull (concat dropbox-directory "Apps/MobileOrg/inbox.org")
-

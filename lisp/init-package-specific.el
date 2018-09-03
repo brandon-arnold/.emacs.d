@@ -13,39 +13,23 @@
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit))
-  :config
-  ;; see https://github.com/magit/magit/issues/2541
-  ;; (defun magit-display-buffer-traditional (buffer)
-  ;;   "Display BUFFER the way this has traditionally been done."
-  ;;   (display-buffer
-  ;;    buffer (if (and (derived-mode-p 'magit-mode)
-  ;;                    (not (memq (with-current-buffer buffer major-mode)
-  ;;                               '(magit-process-mode
-  ;;                                 magit-revision-mode
-  ;;                                 magit-diff-mode
-  ;;                                 magit-stash-mode
-  ;;                                 magit-status-mode))))
-  ;;               '(display-buffer-same-window)
-  ;;             nil))) ; display in another window
-  ;; (setq magit-display-buffer-function
-  ;;     (lambda (buffer)
-  ;;       (display-buffer buffer '(display-buffer-same-window))))
-  )
+  :config)
 
-;; Projectile
 (use-package projectile
   :ensure t
   :bind-keymap ("C-c p" . projectile-command-map)
   :init
-  ;; superceded by counsel-projectile-switch-project
-  ;; (setq projectile-switch-project-action #'projectile-dired)
   (setq projectile-completion-system 'ivy)
   :config
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (projectile-mode +1)
-  (counsel-projectile-mode))
+  (counsel-projectile-mode)
+  (counsel-projectile-modify-action
+   'counsel-projectile-switch-project-action
+   '((move counsel-projectile-switch-project-action-dired 1)
+     (setkey counsel-projectile-switch-project-action-dired "D")
+     (setkey counsel-projectile-switch-project-action " "))))
 
-;; Yas
 (use-package yasnippet
   :ensure t
   :config

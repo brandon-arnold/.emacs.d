@@ -5,8 +5,6 @@
   (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
   (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
   :config
-  ;; (use-package js2-refactor)
-  ;; (use-package prettier-js)
   (use-package xref-js2)
   (define-key js2-mode-map (kbd "M-.") nil)
   (setq js-indent-level 2)
@@ -54,9 +52,6 @@
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
   (company-mode +1))
 
 (use-package typescript-mode
@@ -76,7 +71,6 @@
   (js2r-add-keybindings-with-prefix "C-c C-m"))
 
 (add-to-list 'load-path "~/opt/tern/emacs")
-;; (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 (use-package company-tern
   :init
   (add-to-list 'company-backends 'company-tern)

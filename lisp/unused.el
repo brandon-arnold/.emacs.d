@@ -140,3 +140,73 @@
 ;; Define powershell command
 ;; (if (eq system-type 'windows-nt)
 ;;     (autoload 'powershell "powershell" "Run powershell as a shell within emacs." t))
+
+  ;; see https://github.com/magit/magit/issues/2541
+  ;; (defun magit-display-buffer-traditional (buffer)
+  ;;   "Display BUFFER the way this has traditionally been done."
+  ;;   (display-buffer
+  ;;    buffer (if (and (derived-mode-p 'magit-mode)
+  ;;                    (not (memq (with-current-buffer buffer major-mode)
+  ;;                               '(magit-process-mode
+  ;;                                 magit-revision-mode
+  ;;                                 magit-diff-mode
+  ;;                                 magit-stash-mode
+  ;;                                 magit-status-mode))))
+  ;;               '(display-buffer-same-window)
+  ;;             nil))) ; display in another window
+  ;; (setq magit-display-buffer-function
+  ;;     (lambda (buffer)
+  ;;       (display-buffer buffer '(display-buffer-same-window))))
+
+    ;; (setq org-super-agenda-groups
+    ;;   '((:name "Landdox Deadlines Today"
+    ;;            :and (:deadline today :category "work"))
+    ;;     (:name "Landdox Scheduled Today"
+    ;;            :and (:scheduled today :category "work"))
+    ;;     (:name "Personal Due Today"
+    ;;            :and (:category "personal" :scheduled today)
+    ;;            :and (:category "personal" :deadline today))
+    ;;     (:name "HCSG Due Today"
+    ;;            :and (:category "hcsg" :scheduled today)
+    ;;            :and (:category "hcsg" :deadline today))
+    ;;     (:name none :anything)))
+    ;; (setq org-startup-indented t)
+    ;; if off, M-x org-indent-mode (as per http://orgmode.org/manual/Clean-view.html)
+    ;; org capture templates
+
+;; get rid of heavily weighted TODOs, breaking the org tables
+;; (add-hook 'org-mode-hook
+;;           (lambda ()
+;;             (interactive)
+;;             (set-face-attribute 'org-todo nil :weight 'normal)
+;;             (set-face-attribute 'org-tag nil :weight 'normal)
+;;             (set-face-attribute 'org-done nil :weight 'normal)))
+
+;; Ox-md for markdown
+;;(eval-after-load "org" '(require 'ox-md nil t))
+;;(eval-after-load "org" '(use-package ox-md))
+
+;; Org-Mobile 
+;; (setq org-mobile-directory (concat dropbox-directory "Apps/MobileOrg")
+;; (setq org-mobile-inbox-for-pull (concat dropbox-directory "Apps/MobileOrg/inbox.org")
+
+;; (use-package magithub
+;;   :after magit
+;;   :config
+;;   (magithub-feature-autoinject t)
+;;   (setq magithub-clone-default-directory "~/Projects"))
+
+  ;; superceded by counsel-projectile-switch-project
+  ;; (setq projectile-switch-project-action #'projectile-dired)
+
+;;alchemist
+  ;; (add-to-list 'purpose-user-mode-purposes '(elixir-mode . elixir))
+  ;; (add-to-list 'purpose-user-name-purposes '("*alchemist test report*" . elixir-test))
+  ;; (add-to-list 'purpose-user-name-purposes '("*alchemist mix*" . elixir-mix))
+  ;; (purpose-compile-user-configuration)
+
+;; C/++ Tags
+;; http://www.emacswiki.org/emacs/BuildTags
+;; ETAGS build command (from cygwin, the final dash is important):
+;; find . -type f -name "*.el" | etags -
+;; find . -type f -name "*.el" -o -name "*.c" -o -name "*.cpp" | etags -
