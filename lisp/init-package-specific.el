@@ -30,6 +30,10 @@
      (setkey counsel-projectile-switch-project-action-dired "D")
      (setkey counsel-projectile-switch-project-action " "))))
 
+(use-package wgrep
+  :config
+  (setq wgrep-auto-save-buffer t))
+
 (use-package yasnippet
   :ensure t
   :config

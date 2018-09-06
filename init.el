@@ -16,7 +16,7 @@
  '(minimap-window-location (quote right))
  '(package-selected-packages
    (quote
-    (ace-window ag alchemist auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern counsel counsel-projectile cpputils-cmake dired+ docker dockerfile-mode elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-core helm-css-scss helm-flycheck helm-flyspell hide-lines hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode markdown-mode+ mmm-mode multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit powershell prettier-js projectile rainbow-delimiters rjsx-mode rtags sass-mode slime smartparens sublimity swiper tern tide treemacs typescript-mode use-package visual-fill-column web-mode xref-js2 yaml-mode yasnippet yasnippet-snippets)))
+    (ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern counsel counsel-projectile cpputils-cmake dired+ docker dockerfile-mode elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode markdown-mode+ mmm-mode multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit powershell prettier-js projectile rainbow-delimiters rjsx-mode rtags sass-mode slime smartparens sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets)))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -25,12 +25,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight normal :height 120 :width normal)))))
-;; OSX font:
-;; '(default ((t (:family "Menlo" :foundry "nil" :slant normal :weight normal :height 140 :width normal))))
-;; Windows font:
-;; '(default ((t (:family "Fira Code" :foundry "outline" :slant normal :weight normal :height 110 :width normal))))
+;; '(default ((t (:family "Menlo" :foundry "nil" :slant normal :weight normal :height 140 :width normal)))))
+;; '(default ((t (:family "Fira Code" :foundry "outline" :slant normal :weight normal :height 110 :width normal)))))
 
-;; Emacs packages setup
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("org" . "http://orgmode.org/elpa/")
