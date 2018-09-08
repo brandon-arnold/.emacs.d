@@ -1,7 +1,7 @@
 (provide 'init-org)
 
 (require 'sa-org-functions)
-;(require 'jt/org-split-time)
+(require 'jt-org-split-time)
 
 (if (eq system-type 'windows-nt)
     (setq dropbox-directory (file-name-as-directory "~/Dropbox (Personal)"))
