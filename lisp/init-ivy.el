@@ -38,8 +38,3 @@
   (ivy-rich-mode 1)
   (ivy-set-display-transformer
    'ivy-switch-buffer))
-
-(use-package swiper
-  :after ivy
-  :bind (("C-s" . swiper)
-         ("C-r" . swiper)))
