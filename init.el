@@ -38,7 +38,6 @@
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
-;; JWiegley's use-package macro setup
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
