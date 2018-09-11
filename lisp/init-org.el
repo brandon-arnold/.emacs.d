@@ -37,8 +37,7 @@
     (setq org-log-done 'time)
     (setq org-agenda-text-search-extra-files
           (append
-           (sa-find-org-file-recursively "~/Dropbox/Documents/EmacsOrg/agenda/" ".org_archive")
-           ))
+           (sa-find-org-file-recursively "~/Dropbox/Documents/EmacsOrg/agenda/")))
     (add-to-list 'org-agenda-custom-commands
              '("W" "Weekly review"
                agenda ""
@@ -46,8 +45,7 @@
                 (org-agenda-start-on-weekday 0)
                 (org-agenda-start-with-log-mode t)
                 (org-agenda-skip-function
-                 '(org-agenda-skip-entry-if 'nottodo 'done))
-                )))
+                 '(org-agenda-skip-entry-if 'nottodo 'done)))))
     (add-to-list 'org-agenda-custom-commands
              '("D" "EOD"
                agenda ""
@@ -55,8 +53,7 @@
                 (org-agenda-start-with-log-mode t)
                 (org-agenda-skip-function
                  '(org-agenda-skip-entry-if 'nottodo 'done))
-                (org-agenda-start-with-clockreport-mode t)
-                )))
+                (org-agenda-start-with-clockreport-mode t))))
     (setq org-capture-templates
       `(("t" "Personal Task" entry
          (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/rand-personal.org") "Personal Tasks")
