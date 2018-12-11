@@ -3,7 +3,7 @@
 (require 'sa-org-functions)
 (require 'jt-org-split-time)
 
-(if (eq system-type 'windows-nt)
+(if (member system-type '(darwin windows-nt))
     (setq dropbox-directory (file-name-as-directory "~/Dropbox (Personal)"))
   (setq dropbox-directory (file-name-as-directory "~/Dropbox")))
 
