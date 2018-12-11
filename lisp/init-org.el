@@ -34,6 +34,7 @@
     (setq org-outline-path-complete-in-steps nil)
     (setq org-refile-allow-creating-parent-nodes 'confirm)
     (setq org-clock-into-drawer "CLOCKING")
+    (setq org-clock-idle-time 15)
     (setq org-log-done 'time)
     (setq org-agenda-text-search-extra-files
           (append
@@ -55,20 +56,17 @@
                  '(org-agenda-skip-entry-if 'nottodo 'done))
                 (org-agenda-start-with-clockreport-mode t))))
     (setq org-capture-templates
-      `(("t" "Personal Task" entry
-         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/rand-personal.org") "Personal Tasks")
-         "* TODO %?" :empty-lines 1)
-        ("w" "Work Task" entry
-         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/rand-work.org") "Work Tasks")
-         "* TODO %?" :empty-lines 1)
-        ("h" "HCSG Task" entry
-         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/rand-hcsg.org") "HCSG Tasks")
+      `(("p" "Personal Sprint" entry
+         (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-sprint.org"))
+         "* %?\nEntered on %U\n  %i\n  %a")
+        ("r" "Refile Later" entry
+         (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/refile.org") "Refile Later")
          "* TODO %?" :empty-lines 1)
         ("d" "Dev Meeting Topic" entry
          (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/dev-meeting.org") "Dev Meeting Topic")
          "* TODO %?" :empty-lines 1)
-        ("j" "Journal Thoughts" entry
-         (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal.org"))
+        ("j" "Random Captures" entry
+         (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/random.org"))
          "* %?\nEntered on %U\n  %i\n  %a")
         ("s" "Sleep Journal" entry
          (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/sleep.org"))
@@ -79,6 +77,17 @@
         ("c" "Computing captures" entry
          (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/computing.org"))
          "* %?\nEntered on %U\n  %i\n  %a")))))
+
+(use-package org-tempo
+  :after (org))
+
+(use-package org-crypt
+  :after (org)
+  :config
+  (org-crypt-use-before-save-magic)
+  (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+  (setq org-crypt-key nil)
+  (setq auto-save-default nil))
 
 (use-package ox-md
   :after (org))

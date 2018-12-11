@@ -17,7 +17,8 @@
 (use-package rjsx-mode
   :mode ("\\.js$" . rjsx-mode)
   :config
-  (use-package xref-js2))
+  (use-package xref-js2)
+  (add-hook 'rjsx-mode-hook #'indium-interaction-mode))
 
 (use-package prettier-js
   :init
@@ -87,3 +88,5 @@
   (setq web-mode-enable-auto-pairing t)
   (setq web-mode-enable-auto-expanding t)
   (setq web-mode-enable-css-colorization t))
+
+(use-package indium)
