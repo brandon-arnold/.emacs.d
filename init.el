@@ -16,7 +16,7 @@
  '(minimap-window-location (quote right))
  '(package-selected-packages
    (quote
-    (ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern counsel counsel-projectile cpputils-cmake dired+ docker dockerfile-mode elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode markdown-mode+ mmm-mode multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters rjsx-mode rtags sass-mode slime smartparens sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets)))
+    (ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern counsel counsel-projectile cpputils-cmake dired+ docker dockerfile-mode elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode markdown-mode+ mmm-mode multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters rjsx-mode rtags sass-mode slime smartparens sublimity swiper toc-org use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets)))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -24,9 +24,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight normal :height 120 :width normal)))))
+ '(default ((t (:family "Fira Code" :foundry "outline" :slant normal :weight normal :height 110 :width normal)))))
 ;; '(default ((t (:family "Menlo" :foundry "nil" :slant normal :weight normal :height 140 :width normal)))))
-;; '(default ((t (:family "Fira Code" :foundry "outline" :slant normal :weight normal :height 110 :width normal)))))
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -63,7 +62,7 @@
 
 (setq load-path (cons "~/.emacs.d/lisp/lib" load-path))
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
-(setq load-path (cons "~/.emacs.d/lisp/alchemist" load-path))
+; (setq load-path (cons "~/.emacs.d/lisp/alchemist" load-path))
 (require 'init-general)
 (require 'init-visual)
 (require 'init-ivy)

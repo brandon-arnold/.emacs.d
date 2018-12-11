@@ -37,7 +37,7 @@
     (setq org-log-done 'time)
     (setq org-agenda-text-search-extra-files
           (append
-           (sa-find-org-file-recursively "~/Dropbox/Documents/EmacsOrg/agenda/")))
+           (sa-find-org-file-recursively (concat dropbox-directory "Documents/EmacsOrg/agenda/"))))
     (add-to-list 'org-agenda-custom-commands
              '("W" "Weekly review"
                agenda ""
