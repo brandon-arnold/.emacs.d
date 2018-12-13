@@ -10,13 +10,14 @@
  '(custom-safe-themes
    (quote
     ("0c71e4d0b5ad79a7cb155f180adcc93f2fe5ae3d3a863de7d3a8c898087d890c" default)))
+ '(elfeed-feeds (quote ("https://www.with-emacs.com/rss.xml")))
  '(menu-bar-mode nil)
  '(minimap-always-recenter nil)
  '(minimap-width-fraction 0.15)
  '(minimap-window-location (quote right))
  '(package-selected-packages
    (quote
-    (ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern counsel counsel-projectile cpputils-cmake docker dockerfile-mode elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode markdown-mode+ mmm-mode multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters restclient rjsx-mode rtags sass-mode slime smartparens sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets)))
+    (elfeed ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern counsel counsel-projectile cpputils-cmake docker dockerfile-mode elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode markdown-mode+ mmm-mode multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters restclient rjsx-mode rtags sass-mode slime smartparens sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets)))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces

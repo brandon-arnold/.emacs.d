@@ -1,5 +1,7 @@
 (provide 'init-general)
 
+(require 'move-line)
+
 ;; Backups
 (setq backup-directory-alist '(("." . "~/Documents/EmacsBackup")))
 (setq backup-by-copying t)
@@ -60,22 +62,9 @@
 ;;  causing backslash hell
 (setq reb-re-syntax 'string)
 
-;; convenient ability to move line up and down
-;; TODO move to functions and leave keybindings
-(defun move-line-up ()
-  "Move up the current line."
-  (interactive)
-  (transpose-lines 1)
-  (forward-line -2)
-  (indent-according-to-mode))
-
-(defun move-line-down ()
-  "Move down the current line."
-  (interactive)
-  (forward-line 1)
-  (transpose-lines 1)
-  (forward-line -1)
-  (indent-according-to-mode))
-
+;; ability to move a line up and down (with appropriate tab-indent)
 (global-set-key [(meta shift up)]  'move-line-up)
 (global-set-key [(meta shift down)]  'move-line-down)
+
+;; RSS reader
+(global-set-key (kbd "C-x w") 'elfeed)
