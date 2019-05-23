@@ -53,3 +53,10 @@
 (use-package company
   :init
   (global-company-mode))
+
+;; (use-package lsp-mode
+;;   :commands lsp
+;;   :init)
+
+;; (use-package lsp-ui :commands lsp-ui-mode)
+;; (use-package company-lsp :commands company-lsp)

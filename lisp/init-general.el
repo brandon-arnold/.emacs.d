@@ -33,10 +33,10 @@
 ;; Disable C-z for minimizing emacs
 (global-unset-key (kbd "C-z"))
 
-;; Replace selection with typed/yanked text.
+;; Remove selected text on backspace, and replace selection with typed/yanked text.
 (delete-selection-mode 1)
 
-;; Automatically update buffers
+;; Automatically update buffers when the corresponding file changes on disk
 (global-auto-revert-mode t)
 
 ;; Narrow and widen
@@ -68,3 +68,12 @@
 
 ;; RSS reader
 (global-set-key (kbd "C-x w") 'elfeed)
+
+;; Occur
+ (global-set-key (kbd "C-c o") 'occur)
+
+;; Highlight the row containing the cursor
+(global-hl-line-mode 1)
+
+;; Show the column number containing the cursor in the modeline
+(column-number-mode 1)

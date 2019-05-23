@@ -17,7 +17,7 @@
  '(minimap-window-location (quote right))
  '(package-selected-packages
    (quote
-    (elfeed ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-tern counsel counsel-projectile cpputils-cmake docker dockerfile-mode elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode macrostep magit markdown-mode markdown-mode+ mmm-mode multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters restclient rjsx-mode rtags sass-mode slime smartparens sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets)))
+    (ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-lsp company-tern counsel counsel-projectile cpputils-cmake docker dockerfile-mode eglot elfeed elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymake flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode lsp-hack lsp-haskell lsp-java lsp-javascript-flow lsp-mode lsp-python lsp-ui lua-mode macrostep magit markdown-mode markdown-mode+ mmm-mode monky multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-pomodoro org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters restclient rjsx-mode rtags sass-mode slime smartparens sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets zoom)))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -25,14 +25,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Fira Code" :foundry "outline" :slant normal :weight normal :height 110 :width normal)))))
-;; '(default ((t (:family "Menlo" :foundry "nil" :slant normal :weight normal :height 140 :width normal)))))
+ '(default ((t (:family "Menlo" :foundry "nil" :slant normal :weight normal :height 160 :width normal)))))
 
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("org" . "http://orgmode.org/elpa/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+                         ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
 (when (memq window-system '(mac ns x))
@@ -54,20 +53,20 @@
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 ;; Uncomment to ensure packages are installed on a new system's emacs setup
-;; (defun install-packages ()
-;;   "Install all required packages."
-;;   (interactive)
-;;   (unless package-archive-contents
-;;     (package-refresh-contents))
-;;   (dolist (package package-selected-packages)
-;;     (unless (package-installed-p package)
-;;       (package-install package))))
-;; (install-packages)
+(defun install-packages ()
+  "Install all required packages."
+  (interactive)
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (dolist (package package-selected-packages)
+    (unless (package-installed-p package)
+      (package-install package))))
+(install-packages)
 
 (setq load-path (cons "~/.emacs.d/lisp/lib" load-path))
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
-; (setq load-path (cons "~/.emacs.d/lisp/alchemist" load-path))
 (setq load-path (cons "~/.emacs.d/lisp/emacswiki" load-path))
+(setq load-path (cons "~/src/org-mode/lisp" load-path))
 (require 'init-general)
 (require 'init-visual)
 (require 'init-ivy)
@@ -76,6 +75,7 @@
 (require 'init-org)
 (require 'init-dev-web)
 (require 'init-dev-elisp)
-(require 'init-dev-elixir)
+;; (require 'init-dev-elixir)
+(require 'init-dev-cpp)
 (require 'functions)
 (require 'toggle-window-split)
