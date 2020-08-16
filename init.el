@@ -17,7 +17,7 @@
  '(minimap-window-location (quote right))
  '(package-selected-packages
    (quote
-    (ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-lsp company-tern counsel counsel-projectile cpputils-cmake docker dockerfile-mode eglot elfeed elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymake flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode lsp-hack lsp-haskell lsp-java lsp-javascript-flow lsp-mode lsp-python lsp-ui lua-mode macrostep magit markdown-mode markdown-mode+ mmm-mode monky multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-pomodoro org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters restclient rjsx-mode rtags sass-mode slime smartparens sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets zoom)))
+    (ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-lsp company-solidity company-tern counsel counsel-projectile cpputils-cmake docker dockerfile-mode eglot elfeed elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymake flymake-solidity flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines htmlize hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode lsp-hack lsp-haskell lsp-java lsp-javascript-flow lsp-mode lsp-python lsp-ui lua-mode macrostep magit markdown-mode markdown-mode+ mmm-mode monky multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-pomodoro org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters realgud realgud-lldb restclient rjsx-mode rtags sass-mode slime smartparens solidity-flycheck solidity-mode sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets zoom)))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -25,8 +25,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Menlo" :foundry "nil" :slant normal :weight normal :height 160 :width normal)))))
-
+ '(default ((t (:family "Hack" :foundry "nil" :slant normal :weight normal :height 170 :width normal)))))
+;;
+;; '(default ((t (:family "Hack" :foundry "nil" :slant normal :weight normal :height 130 :width normal)))))
+;;
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("org" . "http://orgmode.org/elpa/")
@@ -34,8 +36,8 @@
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+;(when (memq window-system '(mac ns x))
+;  (exec-path-from-shell-initialize))
 
 ;; Figure out why the above exec-path-from-shell-initialize isn't finding nvm's node and get rid of the following
 (setq exec-path (append exec-path '("~/.nvm/versions/node/v10.13.0/bin")))
@@ -74,8 +76,9 @@
 (require 'init-dired)
 (require 'init-org)
 (require 'init-dev-web)
+(require 'init-dev-lisp)
 (require 'init-dev-elisp)
-;; (require 'init-dev-elixir)
+; (require 'init-dev-elixir)
 (require 'init-dev-cpp)
 (require 'functions)
 (require 'toggle-window-split)

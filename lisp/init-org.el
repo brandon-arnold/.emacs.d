@@ -8,7 +8,7 @@
   (mapcar (function (lambda (prefix) (concat prefix suffix)))
           prefix-list))
 
-(setq personal-dropbox-directory (file-name-as-directory "~/Dropbox (Personal)"))
+(setq personal-dropbox-directory (file-name-as-directory "~/Dropbox"))
 (setq work-directory-exists (f-exists-p "~/Dropbox (Facebook)"))
 (if work-directory-exists
     (progn
@@ -78,27 +78,28 @@
     (setq org-clock-persist-query-resume nil)
     (setq org-agenda-span 'day)
     (setq org-capture-templates
-          `(("r" "Refile Later" entry
-             (file ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/refile.org"))
-             "* %?\n  %a" :empty-lines 1)
-            ("f" "Uncategorized Work TODO" entry
-             (file+headline ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/facebook.org") "Uncategorized")
-             "** TODO %?\n  %i\n  %a")
+          `(
+            ;; ("r" "Refile Later" entry
+            ;;  (file ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/refile.org"))
+            ;;  "* %?\n  %a" :empty-lines 1)
+            ;; ("f" "Uncategorized Work TODO" entry
+            ;;  (file+headline ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/facebook.org") "Uncategorized")
+            ;;  "** TODO %?\n  %i\n  %a")
             ("p" "Uncategorized Personal TODO" entry
              (file+headline ,(concat personal-dropbox-directory "Documents/EmacsOrg/agenda/personal.org") "Uncategorized")
              "** TODO %?\n  %i\n  %a")
-            ("c" "Computing Notes" entry
-             (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/computing.org"))
-             "* %?\nEntered on %U\n  %i\n  %a")
-            ("1" "Work Daily Goals" entry
-             (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/fb-daily.org"))
-             "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
-            ("2" "Work Weekly Goals" entry
-             (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/fb-weekly.org"))
-             "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
-            ("3" "Work Monthly Goals" entry
-             (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/fb-monthly.org"))
-             "* %?\nEntered on %U\n  %i\n" :tree-type month)
+            ;; ("c" "Computing Notes" entry
+            ;;  (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/computing.org"))
+            ;;  "* %?\nEntered on %U\n  %i\n  %a")
+            ;; ("1" "Work Daily Goals" entry
+            ;;  (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/fb-daily.org"))
+            ;;  "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
+            ;; ("2" "Work Weekly Goals" entry
+            ;;  (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/fb-weekly.org"))
+            ;;  "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
+            ;; ("3" "Work Monthly Goals" entry
+            ;;  (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/fb-monthly.org"))
+            ;;  "* %?\nEntered on %U\n  %i\n" :tree-type month)
             ("4" "Personal Daily Goals" entry
              (file+olp+datetree ,(concat personal-dropbox-directory "Documents/EmacsOrg/agenda/p-daily.org"))
              "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
@@ -115,10 +116,7 @@
 (use-package org-archive
   :config
   (progn
-    (setq org-archive-paths
-          (append
-           (directory-files-recursively (concat work-dropbox-directory "Documents/EmacsOrg/agenda/archive") "[.]org_archive$")
-           (directory-files-recursively (concat personal-dropbox-directory "Documents/EmacsOrg/agenda/archive") "[.]org_archive$")))
+    (setq org-archive-paths (directory-files-recursively (concat personal-dropbox-directory "Documents/EmacsOrg/agenda/archive") "[.]org_archive$"))
     (defun org-add-archive-files-from-agenda-files (files)
       "Splice the archive files into the list of files.
 This implies visiting all these files and finding out what the
