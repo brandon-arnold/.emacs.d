@@ -17,7 +17,7 @@
  '(minimap-window-location (quote right))
  '(package-selected-packages
    (quote
-    (ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme company company-lsp company-solidity company-tern counsel counsel-projectile cpputils-cmake docker dockerfile-mode eglot elfeed elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-demjsonlint flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-mix flycheck-popup-tip flymake flymake-solidity flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines htmlize hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode lsp-hack lsp-haskell lsp-java lsp-javascript-flow lsp-mode lsp-python lsp-ui lua-mode macrostep magit markdown-mode markdown-mode+ mmm-mode monky multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-pomodoro org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters realgud realgud-lldb restclient rjsx-mode rtags sass-mode slime smartparens solidity-flycheck solidity-mode sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets zoom)))
+    (ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project company company-lsp company-solidity counsel counsel-projectile cpputils-cmake docker dockerfile-mode eglot elfeed elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-popup-tip flymake flymake-solidity flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines htmlize hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode lsp-haskell lsp-java lsp-mode lsp-ui lua-mode macrostep magit markdown-mode markdown-mode+ mmm-mode monky multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-pomodoro org-projectile org-projectile-helm org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters realgud realgud-lldb restclient rjsx-mode rtags sass-mode slime smartparens solidity-flycheck solidity-mode sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets zoom)))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -55,6 +55,7 @@
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 ;; Uncomment to ensure packages are installed on a new system's emacs setup
+;; TODO cause this to fail silently
 (defun install-packages ()
   "Install all required packages."
   (interactive)
@@ -74,8 +75,8 @@
 (require 'init-ivy)
 (require 'init-package-specific)
 (require 'init-dired)
-(require 'init-org)
-(require 'init-dev-web)
+; (require 'init-org)
+; (require 'init-dev-web)
 (require 'init-dev-lisp)
 (require 'init-dev-elisp)
 ; (require 'init-dev-elixir)
