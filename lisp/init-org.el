@@ -8,39 +8,9 @@
   (mapcar (function (lambda (prefix) (concat prefix suffix)))
           prefix-list))
 
-(setq personal-dropbox-directory (file-name-as-directory "~/Dropbox"))
-(setq work-directory-exists (f-exists-p "~/Dropbox (Facebook)"))
-(if work-directory-exists
-    (progn
-      (setq work-dropbox-directory (file-name-as-directory "~/Dropbox (Facebook)"))
-      (setq primary-dropbox-directory work-dropbox-directory)
-      (setq dropbox-directories (list work-dropbox-directory personal-dropbox-directory))
-      (setq org-agenda-text-search-extra-files
-            (append
-             (append (sa-find-org-file-recursively (concat work-dropbox-directory "Documents/EmacsOrg/agenda/")))
-             (append (sa-find-org-file-recursively (concat personal-dropbox-directory "Documents/EmacsOrg/agenda/")))))
-      (add-to-list 'org-agenda-custom-commands
-                   '("W" "Weekly review"
-                     agenda ""
-                     ((org-agenda-span 'week)
-                      (org-agenda-start-on-weekday 0)
-                      (org-agenda-start-with-log-mode t)
-                      (org-agenda-skip-function
-                       '(org-agenda-skip-entry-if 'nottodo 'done)))))
-      (add-to-list 'org-agenda-custom-commands
-                   '("D" "EOD"
-                     agenda ""
-                     ((org-agenda-span 'day)
-                      (org-agenda-start-with-log-mode t)
-                      (org-agenda-skip-function
-                       '(org-agenda-skip-entry-if 'nottodo 'done))
-                      (org-agenda-start-with-clockreport-mode t))))))
-(unless work-directory-exists
-  (progn
-    (setq primary-dropbox-directory personal-dropbox-directory)
-    (setq dropbox-directories (list personal-dropbox-directory))
-    (setq org-agenda-text-search-extra-files
-          (append (sa-find-org-file-recursively (concat personal-dropbox-directory "Documents/EmacsOrg/agenda/"))))))
+(setq dropbox-directory (file-name-as-directory "~/Dropbox (Personal)"))
+(setq org-agenda-text-search-extra-files
+      (append (sa-find-org-file-recursively (concat personal-dropbox-directory "Documents/EmacsOrg/agenda/"))))
 
 (use-package org
   :ensure t
@@ -49,19 +19,20 @@
          ("C-c c" . org-capture)
          ("C-c a" . org-agenda)
          ("C-," . org-cycle-agenda-files)
-         ("C-c b" . org-iswitchb)
+         ("C-c b" . org-switchb)
          ("C-c j" . org-clock-goto)
          ("C-c C-x C-o" . org-clock-out)
          ("C-c C-x C-r" . org-clock-report))
   :config
   (progn
     (org-super-agenda-mode)
+    (setq org-catch-invisible-edits 'show-and-error)
     (setq org-agenda-clockreport-parameter-plist (plist-put org-agenda-clockreport-parameter-plist :fileskip0 t))
     (setq org-agenda-clockreport-parameter-plist (org-plist-delete org-agenda-clockreport-parameter-plist :link))
     (setq org-archive-location "%s_archive::")
-    (setq org-directory (file-name-as-directory (concat primary-dropbox-directory "Documents/EmacsOrg")))
+    (setq org-directory (file-name-as-directory (concat dropbox-directory "Documents/EmacsOrg")))
     (setq org-default-notes-file (concat org-directory "agenda/refile.org"))
-    (setq org-agenda-files (concat-all dropbox-directories "Documents/EmacsOrg/agenda"))
+    (setq org-agenda-files (concat dropbox-directory "Documents/EmacsOrg/agenda"))
     (setq org-agenda-window-setup 'only-window)
     (setq org-catch-invisible-edits t)
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
@@ -77,47 +48,65 @@
     (setq org-clock-persist t)
     (setq org-clock-persist-query-resume nil)
     (setq org-agenda-span 'day)
+    (add-to-list 'org-agenda-custom-commands
+                 '("W" "Weekly review"
+                   agenda ""
+                   ((org-agenda-span 'week)
+                    (org-agenda-start-on-weekday 0)
+                    (org-agenda-start-with-log-mode t)
+                    (org-agenda-skip-function
+                     '(org-agenda-skip-entry-if 'nottodo 'done)))))
+    (add-to-list 'org-agenda-custom-commands
+                 '("D" "EOD"
+                   agenda ""
+                   ((org-agenda-span 'day)
+                    (org-agenda-start-with-log-mode t)
+                    (org-agenda-skip-function
+                     '(org-agenda-skip-entry-if 'nottodo 'done))
+                    (org-agenda-start-with-clockreport-mode t)))))
     (setq org-capture-templates
-          `(
-            ;; ("r" "Refile Later" entry
-            ;;  (file ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/refile.org"))
-            ;;  "* %?\n  %a" :empty-lines 1)
-            ;; ("f" "Uncategorized Work TODO" entry
-            ;;  (file+headline ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/facebook.org") "Uncategorized")
-            ;;  "** TODO %?\n  %i\n  %a")
+          `(("r" "Refile Later" entry
+             (file ,(concat dropbox-directory "Documents/EmacsOrg/agenda/refile.org"))
+             "* %?\n  " :empty-lines 1)
+            ("f" "Uncategorized Work TODO" entry
+             (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/facebook.org") "Uncategorized")
+             "** TODO %?\n  ")
             ("p" "Uncategorized Personal TODO" entry
-             (file+headline ,(concat personal-dropbox-directory "Documents/EmacsOrg/agenda/personal.org") "Uncategorized")
-             "** TODO %?\n  %i\n  %a")
-            ;; ("c" "Computing Notes" entry
-            ;;  (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/computing.org"))
-            ;;  "* %?\nEntered on %U\n  %i\n  %a")
-            ;; ("1" "Work Daily Goals" entry
-            ;;  (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/fb-daily.org"))
-            ;;  "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
-            ;; ("2" "Work Weekly Goals" entry
-            ;;  (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/fb-weekly.org"))
-            ;;  "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
-            ;; ("3" "Work Monthly Goals" entry
-            ;;  (file+olp+datetree ,(concat work-dropbox-directory "Documents/EmacsOrg/agenda/fb-monthly.org"))
-            ;;  "* %?\nEntered on %U\n  %i\n" :tree-type month)
+             (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/personal.org") "Uncategorized")
+             "** TODO %?\n  ")
+            ("c" "Work Computing Notes" entry
+             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-computing.org"))
+             "* %?\nEntered on %U\n  %i\n  %a")
+            ("m" "Work Discussion" entry
+             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-discussion.org"))
+             "* %?\n  Entered on %U\n  ")
+            ("j" "Personal Journal/Capture" entry
+             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal.org"))
+             "* %?\n  Entered on %U\n  ")
+            ("1" "Work Daily Goals" entry
+             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-daily.org"))
+             "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
+            ("2" "Work Weekly Goals" entry
+             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-weekly.org"))
+             "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
+            ("3" "Work Monthly Goals" entry
+             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-monthly.org"))
+             "* %?\nEntered on %U\n  %i\n" :tree-type month)
             ("4" "Personal Daily Goals" entry
-             (file+olp+datetree ,(concat personal-dropbox-directory "Documents/EmacsOrg/agenda/p-daily.org"))
+             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-daily.org"))
              "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
             ("5" "Personal Weekly Goals" entry
-             (file+olp+datetree ,(concat personal-dropbox-directory "Documents/EmacsOrg/agenda/p-weekly.org"))
+             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-weekly.org"))
              "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
             ("6" "Personal Monthly Goals" entry
-             (file+olp+datetree ,(concat personal-dropbox-directory "Documents/EmacsOrg/agenda/p-monthly.org"))
+             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-monthly.org"))
              "* %?\nEntered on %U\n  %i\n" :tree-type month)
-            ("7" "Personal Journal/Capture" entry
-             (file+olp+datetree ,(concat personal-dropbox-directory "Documents/EmacsOrg/agenda/journal.org"))
-             "* %?\n  Entered on %U\n  %i\n  %a")
-           ))))
+            )))
 
 (use-package org-archive
   :config
   (progn
-    (setq org-archive-paths (directory-files-recursively (concat personal-dropbox-directory "Documents/EmacsOrg/agenda/archive") "[.]org_archive$"))
+    (setq org-archive-paths (directory-files-recursively (concat dropbox-directory "Documents/EmacsOrg/agenda/archive") "[.]org_archive$"))
     (defun org-add-archive-files-from-agenda-files (files)
       "Splice the archive files into the list of files.
 This implies visiting all these files and finding out what the
@@ -184,7 +173,7 @@ too."
       :hook
       (after-init . org-roam-mode)
       :custom
-      (org-roam-directory (concat personal-dropbox-directory "Documents/EmacsOrg/roam"))
+      (org-roam-directory (concat dropbox-directory "Documents/EmacsOrg/roam"))
       :bind (("C-c n z" . org-roam-find-index)
              :map org-roam-mode-map
              (("C-c n l" . org-roam)
