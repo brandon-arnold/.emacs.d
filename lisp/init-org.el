@@ -10,7 +10,7 @@
 
 (setq dropbox-directory (file-name-as-directory "~/Dropbox (Personal)"))
 (setq org-agenda-text-search-extra-files
-      (append (sa-find-org-file-recursively (concat personal-dropbox-directory "Documents/EmacsOrg/agenda/"))))
+      (append (sa-find-org-file-recursively (concat dropbox-directory "Documents/EmacsOrg/agenda/"))))
 
 (use-package org
   :ensure t
