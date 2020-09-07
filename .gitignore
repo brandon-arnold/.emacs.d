@@ -17,3 +17,6 @@ projectile-bookmarks.eld
 projectile.cache
 recentf
 .mc-lists.el
+tramp
+org-clock-save.el
+%backup%~
