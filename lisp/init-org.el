@@ -111,7 +111,8 @@
              "* %?\nEntered on %U\n  %i\n" :tree-type month)
             ("7" "Personal Journal/Capture" entry
              (file+olp+datetree ,(concat personal-dropbox-directory "Documents/EmacsOrg/agenda/journal.org"))
-             "* %?\n  Entered on %U\n  %i\n  %a")))))
+             "* %?\n  Entered on %U\n  %i\n  %a")
+           ))))
 
 (use-package org-archive
   :config
@@ -178,3 +179,17 @@ too."
  '((emacs-lisp . t)
    (js . t)))
 
+(use-package org-roam
+      :ensure t
+      :hook
+      (after-init . org-roam-mode)
+      :custom
+      (org-roam-directory (concat personal-dropbox-directory "Documents/EmacsOrg/roam"))
+      :bind (("C-c n z" . org-roam-find-index)
+             :map org-roam-mode-map
+             (("C-c n l" . org-roam)
+              ("C-c n f" . org-roam-find-file)
+              ("C-c n g" . org-roam-graph-show))
+             :map org-mode-map
+             (("C-c n i" . org-roam-insert))
+             (("C-c n I" . org-roam-insert-immediate))))
