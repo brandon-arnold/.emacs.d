@@ -32,7 +32,7 @@
     (setq org-archive-location "%s_archive::")
     (setq org-directory (file-name-as-directory (concat dropbox-directory "Documents/EmacsOrg")))
     (setq org-default-notes-file (concat org-directory "agenda/refile.org"))
-    (setq org-agenda-files (concat dropbox-directory "Documents/EmacsOrg/agenda"))
+    (setq org-agenda-files (concat-all (list dropbox-directory) "Documents/EmacsOrg/agenda"))
     (setq org-agenda-window-setup 'only-window)
     (setq org-catch-invisible-edits t)
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))

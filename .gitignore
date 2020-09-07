@@ -18,5 +18,6 @@ projectile.cache
 recentf
 .mc-lists.el
 tramp
+transient
 org-clock-save.el
 %backup%~
