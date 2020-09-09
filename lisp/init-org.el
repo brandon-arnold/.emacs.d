@@ -8,7 +8,7 @@
   (mapcar (function (lambda (prefix) (concat prefix suffix)))
           prefix-list))
 
-(setq dropbox-directory (file-name-as-directory "~/Dropbox (Personal)"))
+(setq dropbox-directory (file-name-as-directory "~/Dropbox"))
 (setq org-agenda-text-search-extra-files
       (append (sa-find-org-file-recursively (concat dropbox-directory "Documents/EmacsOrg/agenda/"))))
 
@@ -64,44 +64,43 @@
                     (org-agenda-skip-function
                      '(org-agenda-skip-entry-if 'nottodo 'done))
                     (org-agenda-start-with-clockreport-mode t)))))
-    (setq org-capture-templates
-          `(("r" "Refile Later" entry
-             (file ,(concat dropbox-directory "Documents/EmacsOrg/agenda/refile.org"))
-             "* %?\n  " :empty-lines 1)
-            ("f" "Uncategorized Work TODO" entry
-             (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/facebook.org") "Uncategorized")
-             "** TODO %?\n  ")
-            ("p" "Uncategorized Personal TODO" entry
-             (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/personal.org") "Uncategorized")
-             "** TODO %?\n  ")
-            ("c" "Work Computing Notes" entry
-             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-computing.org"))
-             "* %?\nEntered on %U\n  %i\n  %a")
-            ("m" "Work Discussion" entry
-             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-discussion.org"))
-             "* %?\n  Entered on %U\n  ")
-            ("j" "Personal Journal/Capture" entry
-             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal.org"))
-             "* %?\n  Entered on %U\n  ")
-            ("1" "Work Daily Goals" entry
-             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-daily.org"))
-             "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
-            ("2" "Work Weekly Goals" entry
-             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-weekly.org"))
-             "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
-            ("3" "Work Monthly Goals" entry
-             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-monthly.org"))
-             "* %?\nEntered on %U\n  %i\n" :tree-type month)
-            ("4" "Personal Daily Goals" entry
-             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-daily.org"))
-             "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
-            ("5" "Personal Weekly Goals" entry
-             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-weekly.org"))
-             "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
-            ("6" "Personal Monthly Goals" entry
-             (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-monthly.org"))
-             "* %?\nEntered on %U\n  %i\n" :tree-type month)
-            )))
+  (setq org-capture-templates
+        `(("r" "Refile Later" entry
+           (file ,(concat dropbox-directory "Documents/EmacsOrg/agenda/refile.org"))
+           "* %?\n  " :empty-lines 1)
+          ("f" "Uncategorized Work TODO" entry
+           (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/facebook.org") "Uncategorized")
+           "** TODO %?\n  ")
+          ("p" "Uncategorized Personal TODO" entry
+           (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/personal.org") "Uncategorized")
+           "** TODO %?\n  ")
+          ("c" "Work Computing Notes" entry
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-computing.org"))
+           "* %?\nEntered on %U\n  %i\n  %a")
+          ("m" "Work Discussion" entry
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-discussion.org"))
+           "* %?\n  Entered on %U\n  ")
+          ("j" "Personal Journal/Capture" entry
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal.org"))
+           "* %?\n  Entered on %U\n  ")
+          ("1" "Work Daily Goals" entry
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-daily.org"))
+           "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
+          ("2" "Work Weekly Goals" entry
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-weekly.org"))
+           "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
+          ("3" "Work Monthly Goals" entry
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-monthly.org"))
+           "* %?\nEntered on %U\n  %i\n" :tree-type month)
+          ("4" "Personal Daily Goals" entry
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-daily.org"))
+           "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
+          ("5" "Personal Weekly Goals" entry
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-weekly.org"))
+           "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
+          ("6" "Personal Monthly Goals" entry
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-monthly.org"))
+           "* %?\nEntered on %U\n  %i\n" :tree-type month))))
 
 (use-package org-archive
   :config
@@ -169,16 +168,16 @@ too."
    (js . t)))
 
 (use-package org-roam
-      :ensure t
-      :hook
-      (after-init . org-roam-mode)
-      :custom
-      (org-roam-directory (concat dropbox-directory "Documents/EmacsOrg/roam"))
-      :bind (("C-c n z" . org-roam-find-index)
-             :map org-roam-mode-map
-             (("C-c n l" . org-roam)
-              ("C-c n f" . org-roam-find-file)
-              ("C-c n g" . org-roam-graph-show))
-             :map org-mode-map
-             (("C-c n i" . org-roam-insert))
-             (("C-c n I" . org-roam-insert-immediate))))
+  :ensure t
+  :hook
+  (after-init . org-roam-mode)
+  :custom
+  (org-roam-directory (concat dropbox-directory "Documents/EmacsOrg/roam"))
+  :bind (("C-c n z" . org-roam-find-index)
+         :map org-roam-mode-map
+         (("C-c n l" . org-roam)
+          ("C-c n f" . org-roam-find-file)
+          ("C-c n g" . org-roam-graph-show))
+         :map org-mode-map
+         (("C-c n i" . org-roam-insert))
+         (("C-c n I" . org-roam-insert-immediate))))
