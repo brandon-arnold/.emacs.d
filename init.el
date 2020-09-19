@@ -62,7 +62,7 @@
 (install-packages)
 
 (setq dropbox-directory (file-name-as-directory "~/Dropbox"))
-(setq dropbox-directory-exists? (f-exists-p dropbox-directory))
+(setq dropbox-directory-exists? (file-exists-p dropbox-directory))
 
 (setq load-path (cons "~/.emacs.d/lisp/lib" load-path))
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
