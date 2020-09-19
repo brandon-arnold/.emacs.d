@@ -8,7 +8,6 @@
   (mapcar (function (lambda (prefix) (concat prefix suffix)))
           prefix-list))
 
-(setq dropbox-directory (file-name-as-directory "~/Dropbox"))
 (setq org-agenda-text-search-extra-files
       (append (sa-find-org-file-recursively (concat dropbox-directory "Documents/EmacsOrg/agenda/"))))
 
@@ -74,7 +73,7 @@
           ("p" "Uncategorized Personal TODO" entry
            (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/personal.org") "Uncategorized")
            "** TODO %?\n  ")
-          ("c" "Work Computing Notes" entry
+          ("w" "Work Computing Notes" entry
            (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-computing.org"))
            "* %?\nEntered on %U\n  %i\n  %a")
           ("m" "Work Discussion" entry
@@ -83,6 +82,9 @@
           ("j" "Personal Journal/Capture" entry
            (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal.org"))
            "* %?\n  Entered on %U\n  ")
+          ("c" "Personal Computing Notes" entry
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/computing.org"))
+           "* %?\nEntered on %U\n  %i\n  %a")
           ("1" "Work Daily Goals" entry
            (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-daily.org"))
            "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
