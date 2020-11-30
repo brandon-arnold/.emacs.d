@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        org-beginning-of-line
         org-cycle
         org-delete-char
         org-self-insert-command
