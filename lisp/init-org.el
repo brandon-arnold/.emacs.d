@@ -141,28 +141,28 @@ too."
 ;; (use-package org-tempo
 ;;   :after (org))
 
-(use-package org-crypt
-  :after (org)
-  :config
-  (org-crypt-use-before-save-magic)
-  (setq org-tags-exclude-from-inheritance (quote ("crypt")))
-  (setq org-crypt-key nil)
-  (setq auto-save-default nil))
+;; (use-package org-crypt
+;;   :after (org)
+;;   :config
+;;   (org-crypt-use-before-save-magic)
+;;   (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+;;   (setq org-crypt-key nil)
+;;   (setq auto-save-default nil))
 
-(use-package ox-md
-  :after (org))
+;; (use-package ox-md
+;;   :after (org))
 
-(use-package org-projectile
-  :bind (("C-c n p" . org-projectile-project-todo-completing-read))
-  :config
-  (progn
-    (setq org-projectile-projects-file
-          (concat dropbox-directory "Documents/EmacsOrg/agenda/projects.org"))
-    (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-    (push (org-projectile-project-todo-entry) org-capture-templates)))
+;; (use-package org-projectile
+;;   :bind (("C-c n p" . org-projectile-project-todo-completing-read))
+;;   :config
+;;   (progn
+;;     (setq org-projectile-projects-file
+;;           (concat dropbox-directory "Documents/EmacsOrg/agenda/projects.org"))
+;;     (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+;;     (push (org-projectile-project-todo-entry) org-capture-templates)))
 
-(if (eq system-type 'windows-nt)
-    (setq markdown-open-command "C:\\Program Files (x86)\\MarkdownPad 2\\MarkdownPad2.exe"))
+;; (if (eq system-type 'windows-nt)
+;;     (setq markdown-open-command "C:\\Program Files (x86)\\MarkdownPad 2\\MarkdownPad2.exe"))
 
 (org-babel-do-load-languages
  'org-babel-load-languages

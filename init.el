@@ -15,7 +15,7 @@
  '(minimap-width-fraction 0.15)
  '(minimap-window-location 'right)
  '(package-selected-packages
-   '(ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme-modern company company-lsp company-solidity counsel counsel-projectile cpputils-cmake docker dockerfile-mode eglot elfeed elixir-mode emacsql-sqlite3 exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-popup-tip flymake flymake-solidity flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines htmlize hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode lsp-haskell lsp-java lsp-mode lsp-ui lua-mode macrostep magit markdown-mode markdown-mode+ mmm-mode monky multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-pomodoro org-projectile org-projectile-helm org-roam org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters realgud realgud-lldb restclient rjsx-mode rtags sass-mode slime smartparens solidity-flycheck solidity-mode sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets zoom))
+   '(ace-window ag ample-regexps auctex auto-compile avy benchmark-init circe cmake-font-lock cmake-ide cmake-project color-theme-modern company company-lsp company-solidity counsel counsel-projectile cpputils-cmake docker dockerfile-mode eglot elfeed elixir-mode emacsql-sqlite3 exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-popup-tip flymake flymake-solidity flymd free-keys gitconfig-mode gitlab haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines htmlize hydra indium ivy ivy-hydra ivy-rich iy-go-to-char js2-mode js2-refactor json-mode less-css-mode lsp-haskell lsp-java lsp-mode lsp-ui lua-mode macrostep magit markdown-mode markdown-mode+ mmm-mode monky multiple-cursors night-owl-theme ob-elixir ob-typescript omnisharp org-pomodoro org-projectile org-projectile-helm org-ql org-roam org-super-agenda org-tree-slide paredit php-mode powershell prettier-js projectile rainbow-delimiters realgud realgud-lldb restclient rjsx-mode rtags sass-mode slime smartparens solidity-flycheck solidity-mode sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets zoom))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -77,10 +77,10 @@
 (require 'init-package-specific)
 (require 'init-dired)
 (if dropbox-directory-exists? (require 'init-org))
-; (require 'init-dev-web)
+;; (require 'init-dev-web)
 (require 'init-dev-lisp)
 (require 'init-dev-elisp)
-; (require 'init-dev-elixir)
-; (require 'init-dev-cpp)
+;; (require 'init-dev-elixir)
+;; (require 'init-dev-cpp)
 (require 'functions)
 (require 'toggle-window-split)

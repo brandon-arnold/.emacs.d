@@ -21,3 +21,4 @@ tramp
 transient
 org-clock-save.el
 %backup%~
+org-roam.db
