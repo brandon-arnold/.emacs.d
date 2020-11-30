@@ -76,3 +76,7 @@
 
 ;; Show the column number containing the cursor in the modeline
 (column-number-mode 1)
+
+;; Default C-x f directory
+(setq default-directory "~/")
+(setq command-line-default-directory "~/")
