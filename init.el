@@ -23,7 +23,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack" :foundry "nil" :slant normal :weight normal :height 150 :width normal)))))
+ '(default ((t (:family "Hack" :foundry "nil" :slant normal :weight normal :height 100 :width normal)))))
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("org" . "http://orgmode.org/elpa/")
@@ -61,15 +61,15 @@
       (package-install package))))
 (install-packages)
 
-(setq dropbox-directory (file-name-as-directory "~/Dropbox (Personal)"))
+(setq dropbox-directory (file-name-as-directory "~/Dropbox"))
 (setq dropbox-directory-exists? (file-exists-p dropbox-directory))
 
 (setq load-path (cons "~/.emacs.d/lisp/lib" load-path))
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 (setq load-path (cons "~/.emacs.d/lisp/emacswiki" load-path))
 ;; (setq load-path (cons "~/fbsource/fbcode/emacs_config" load-path))
-;; (setq load-path (cons "~/.emacs.d/lisp/ed-mode/" load-path))
-;; (require 'ed "ed-mode")
+(setq load-path (cons "~/.emacs.d/lisp/ed-mode/" load-path))
+(require 'ed "ed-mode")
 (require 'init-general)
 (require 'init-visual)
 (require 'init-ivy)
@@ -83,4 +83,4 @@
 ;; (require 'init-dev-cpp)
 (require 'functions)
 (require 'toggle-window-split)
-(require 'init-facebook)
+;; (require 'init-facebook)

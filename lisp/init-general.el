@@ -80,3 +80,8 @@
 ;; Default C-x f directory
 (setq default-directory "~/")
 (setq command-line-default-directory "~/")
+
+;; Fix PDF View being unusable when linum-mode is enabled
+(add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
+(add-hook 'doc-view-mode-hook (lambda() (linum-mode -1)))
+
