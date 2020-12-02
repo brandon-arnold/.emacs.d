@@ -47,6 +47,7 @@
     (setq org-clock-persist t)
     (setq org-clock-persist-query-resume nil)
     (setq org-agenda-span 'day)
+    (setq org-link-file-path-type 'relative)
     (add-to-list 'org-agenda-custom-commands
                  '("W" "Weekly review"
                    agenda ""
