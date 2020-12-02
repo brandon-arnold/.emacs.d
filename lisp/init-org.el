@@ -180,6 +180,18 @@ too."
       (setq org-roam-graph-viewer "/usr/bin/open")
     (setq org-roam-graph-viewer "google-chrome-stable"))
   (setq org-roam-index-file (concat dropbox-directory "Documents/EmacsOrg/roam/20201201230242-index.org"))
+  ;; See Graphviz docs here:
+  ;;  https://graphviz.org/doc/info/attrs.html
+  ;; and related roam graph config doc here:
+  ;;  https://www.orgroam.com/manual.html#Graph-Options
+  (setq org-roam-graph-extra-config '(("rankdir" . "RL")))
+  (setq org-roam-graph-node-extra-config
+        '(("color" . "black")
+          ("fillcolor" . "lightgrey")
+          ("style" . "filled")
+          ("shape" . "box")))
+  (setq org-roam-graph-edge-extra-config '(("dir" . "back")))
+  (setq org-roam-graph-edge-cites-extra-config '(("color" . "red")))
   :config
   (require 'org-roam-protocol)
   :custom
