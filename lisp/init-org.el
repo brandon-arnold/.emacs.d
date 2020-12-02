@@ -171,10 +171,17 @@ too."
 
 (use-package org-roam
   :ensure t
+  :after (org)
   :hook
   (after-init . org-roam-mode)
+  :init
+  (when (memq window-system '(mac ns))
+    (setq org-roam-graph-viewer "/usr/bin/open"))
+  :config
+  (require 'org-roam-protocol)
   :custom
   (org-roam-directory (concat dropbox-directory "Documents/EmacsOrg/roam"))
+  (org-roam-graph-viewer "/usr/bin/open")
   :bind (("C-c n z" . org-roam-find-index)
          :map org-roam-mode-map
          (("C-c n l" . org-roam)
@@ -183,3 +190,20 @@ too."
          :map org-mode-map
          (("C-c n i" . org-roam-insert))
          (("C-c n I" . org-roam-insert-immediate))))
+
+(defun my-org-protocol-focus-advice (orig &rest args)
+  (x-focus-frame nil)
+  (apply orig args))
+
+(advice-add 'org-roam-protocol-open-ref :around
+            #'my-org-protocol-focus-advice)
+(advice-add 'org-roam-protocol-open-file :around
+            #'my-org-protocol-focus-advice)
+
+;; (use-package org-ref
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (setq reftex-default-bibliography '((concat dropbox-directory "Documents/bibliography/ref.bib")))
+;;     (setq )
+;;     ))
