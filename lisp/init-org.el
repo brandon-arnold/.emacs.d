@@ -176,14 +176,15 @@ too."
   :hook
   (after-init . org-roam-mode)
   :init
-  (when (memq window-system '(mac ns))
-    (setq org-roam-graph-viewer "/usr/bin/open"))
+  (if (memq window-system '(mac ns))
+      (setq org-roam-graph-viewer "/usr/bin/open")
+    (setq org-roam-graph-viewer "google-chrome-stable"))
+  (setq org-roam-index-file (concat dropbox-directory "Documents/EmacsOrg/roam/20201201230242-index.org"))
   :config
   (require 'org-roam-protocol)
   :custom
   (org-roam-directory (concat dropbox-directory "Documents/EmacsOrg/roam"))
-  (org-roam-graph-viewer "/usr/bin/open")
-  :bind (("C-c n z" . org-roam-find-index)
+  :bind (("C-c n z" . org-roam-jump-to-index)
          :map org-roam-mode-map
          (("C-c n l" . org-roam)
           ("C-c n f" . org-roam-find-file)
