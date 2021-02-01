@@ -66,7 +66,7 @@
                     (org-agenda-start-with-clockreport-mode t)))))
   (setq org-capture-templates
         `(("r" "Refile Later" entry
-           (file ,(concat dropbox-directory "Documents/EmacsOrg/agenda/refile.org"))
+           (file ,(concat dropbox-directory "Documents/EmacsOrg/agenda/inbox.org"))
            "* %?\n  " :empty-lines 1)
           ("f" "Uncategorized Work TODO" entry
            (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/facebook.org") "Uncategorized")
@@ -75,34 +75,31 @@
            (file+headline ,(concat dropbox-directory "Documents/EmacsOrg/agenda/personal.org") "Uncategorized")
            "** TODO %?\n  ")
           ("w" "Work Computing Notes" entry
-           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-computing.org"))
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/fb-computing.org"))
            "* %?\nEntered on %U\n  %i\n  %a")
           ("m" "Work Discussion" entry
-           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-discussion.org"))
-           "* %?\n  Entered on %U\n  ")
-          ("j" "Personal Journal/Capture" entry
-           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal.org"))
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/fb-discussion.org"))
            "* %?\n  Entered on %U\n  ")
           ("c" "Personal Computing Notes" entry
-           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/computing.org"))
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/computing.org"))
            "* %?\nEntered on %U\n  %i\n  %a")
           ("1" "Work Daily Goals" entry
-           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-daily.org"))
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/fb-daily.org"))
            "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
           ("2" "Work Weekly Goals" entry
-           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-weekly.org"))
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/fb-weekly.org"))
            "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
           ("3" "Work Monthly Goals" entry
-           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/fb-monthly.org"))
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/fb-monthly.org"))
            "* %?\nEntered on %U\n  %i\n" :tree-type month)
           ("4" "Personal Daily Goals" entry
-           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-daily.org"))
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/p-daily.org"))
            "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
           ("5" "Personal Weekly Goals" entry
-           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-weekly.org"))
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/p-weekly.org"))
            "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
           ("6" "Personal Monthly Goals" entry
-           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/p-monthly.org"))
+           (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/p-monthly.org"))
            "* %?\nEntered on %U\n  %i\n" :tree-type month))))
 
 (use-package org-archive
@@ -179,7 +176,7 @@ too."
   (if (memq window-system '(mac ns))
       (setq org-roam-graph-viewer "/usr/bin/open")
     (setq org-roam-graph-viewer "google-chrome-stable"))
-  (setq org-roam-index-file (concat dropbox-directory "Documents/EmacsOrg/roam/20201201230242-index.org"))
+  (setq org-roam-index-file "20201201230242-index.org")
   ;; See Graphviz docs here:
   ;;  https://graphviz.org/doc/info/attrs.html
   ;; and related roam graph config doc here:
@@ -192,6 +189,15 @@ too."
           ("shape" . "box")))
   (setq org-roam-graph-edge-extra-config '(("dir" . "back")))
   (setq org-roam-graph-edge-cites-extra-config '(("color" . "red")))
+  (setq org-roam-db-location "~/temp/org-roam.db")
+  (setq org-roam-dailies-directory "daily/")
+  ;; (concat dropbox-directory "Documents/EmacsOrg/roam/daily")
+  (setq org-roam-dailies-capture-templates
+   `(("d" "default" entry
+      #'org-roam-capture--get-point
+      "* %?"
+      :file-name "daily/%<%Y-%m-%d>"
+      :head "#+title: %<%Y-%m-%d>\n\n")))
   :config
   (require 'org-roam-protocol)
   :custom
@@ -200,10 +206,13 @@ too."
          :map org-roam-mode-map
          (("C-c n l" . org-roam)
           ("C-c n f" . org-roam-find-file)
-          ("C-c n g" . org-roam-graph-show))
+          ("C-c n g" . org-roam-graph-show)
+          ("C-c n c" . org-roam-dailies-capture-today)
+          ("C-c n d" . org-roam-dailies-capture-date))
          :map org-mode-map
-         (("C-c n i" . org-roam-insert))
-         (("C-c n I" . org-roam-insert-immediate))))
+         (("C-c n i" . org-roam-insert)
+          ("C-c n I" . org-roam-insert-immediate))
+         ))
 
 (defun my-org-protocol-focus-advice (orig &rest args)
   (x-focus-frame nil)
@@ -214,10 +223,45 @@ too."
 (advice-add 'org-roam-protocol-open-file :around
             #'my-org-protocol-focus-advice)
 
-;; (use-package org-ref
-;;   :ensure t
-;;   :config
-;;   (progn
-;;     (setq reftex-default-bibliography '((concat dropbox-directory "Documents/bibliography/ref.bib")))
-;;     (setq )
-;;     ))
+(setq bibtex-completion-bibliography
+      `(,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/default.bib")
+        ,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/zotero.bib"))
+      bibtex-completion-library-path "~/temp/pdf"
+      bibtex-completion-notes-path "~/Dropbox/Documents/EmacsOrg/ref-notes")
+
+
+;; ivy-bibtex for looking up and bibs and opening the corresponding URI/PDF
+(autoload 'ivy-bibtex "ivy-bibtex" "" t)
+(setq ivy-re-builders-alist
+      '((ivy-bibtex . ivy--regex-ignore-order)
+        (t . ivy--regex-plus)))
+
+(use-package org-ref
+  :ensure t
+  :config
+  (progn
+    (setq reftex-default-bibliography
+          `(,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/default.bib")
+            ,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/zotero.bib")))
+    (setq org-ref-default-bibliography
+          `(,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/default.bib")
+            ,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/zotero.bib"))
+          org-ref-bibliography-notes (concat dropbox-directory "Documents/EmacsOrg/roam/ref-notes/default.org")
+          org-ref-pdf-directory "~/temp/pdf")
+    ))
+
+(use-package org-roam-bibtex
+  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :bind (:map org-mode-map
+              (("C-c ) a" . orb-note-actions)
+               ("C-c ) i" . orb-insert)))
+  :config
+  (progn
+    (setq orb-note-actions-interface 'hydra))
+  :custom
+  (orb-templates
+      '(("r" "ref" plain (function org-roam-capture--get-point) "%?"
+         :file-name "ref-notes/${citekey}"
+         :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}\n#+CREATED: %U\n#+EDITED: %U\n#+ROAM_TAGS: \n* Notes on ${citekey}\n :PROPERTIES:\n :Custom_ID:  ${citekey}\n :END:\n"
+        :unnarrowed t
+        :immediate-finish t))))
