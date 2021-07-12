@@ -83,7 +83,7 @@
           ("c" "Personal Computing Notes" entry
            (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/computing.org"))
            "* %?\nEntered on %U\n  %i\n  %a")
-          ("1" "Work Daily Goals" entry
+          ("1" "Work Daily Journal" entry
            (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/fb-daily.org"))
            "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
           ("2" "Work Weekly Goals" entry
@@ -92,9 +92,9 @@
           ("3" "Work Monthly Goals" entry
            (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/fb-monthly.org"))
            "* %?\nEntered on %U\n  %i\n" :tree-type month)
-          ("4" "Personal Daily Goals" entry
+          ("4" "Personal Daily Journal" entry
            (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/p-daily.org"))
-           "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/daily.txt]")
+           "* %?\nEntered on %U\n%[~/.eqmacs.d/lisp/org-capture-templates/daily.txt]")
           ("5" "Personal Weekly Goals" entry
            (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/p-weekly.org"))
            "* %?\nEntered on %U\n%[~/.emacs.d/lisp/org-capture-templates/weekly.txt]" :tree-type week)
