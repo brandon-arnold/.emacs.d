@@ -11,6 +11,7 @@
 (require 'dired-subtree)
 
 (use-package dired+
+  :load-path "~/.emacs.d/packages/dired+"
   :config
   (setq diredp-hide-details-initially-flag t))
 
