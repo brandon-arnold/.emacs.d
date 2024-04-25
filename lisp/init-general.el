@@ -28,7 +28,8 @@
 (setq-default truncate-lines t)
 
 ;; Show line numbers
-(global-linum-mode)
+;; (global-linum-mode)
+(line-number-mode)
 
 ;; Disable C-z for minimizing emacs
 (global-unset-key (kbd "C-z"))

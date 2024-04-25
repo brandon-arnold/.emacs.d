@@ -168,101 +168,101 @@ too."
    (js . t)
    (shell . t)))
 
-(use-package org-roam
-  :ensure t
-  :after (org)
-  :hook
-  (after-init . org-roam-mode)
-  :init
-  (if (memq window-system '(mac ns))
-      (setq org-roam-graph-viewer "/usr/bin/open")
-    (setq org-roam-graph-viewer "google-chrome-stable"))
-  (setq org-roam-index-file "20201201230242-index.org")
-  ;; See Graphviz docs here:
-  ;;  https://graphviz.org/doc/info/attrs.html
-  ;; and related roam graph config doc here:
-  ;;  https://www.orgroam.com/manual.html#Graph-Options
-  (setq org-roam-graph-extra-config '(("rankdir" . "RL")))
-  (setq org-roam-graph-node-extra-config
-        '(("color" . "black")
-          ("fillcolor" . "lightgrey")
-          ("style" . "filled")
-          ("shape" . "box")))
-  (setq org-roam-graph-edge-extra-config '(("dir" . "back")))
-  (setq org-roam-graph-edge-cites-extra-config '(("color" . "red")))
-  (setq org-roam-db-location "~/temp/org-roam.db")
-  (setq org-roam-dailies-directory "daily/")
-  ;; (concat dropbox-directory "Documents/EmacsOrg/roam/daily")
-  (setq org-roam-dailies-capture-templates
-   `(("d" "default" entry
-      #'org-roam-capture--get-point
-      "* %?"
-      :file-name "daily/%<%Y-%m-%d>"
-      :head "#+title: %<%Y-%m-%d>\n\n")))
-  :config
-  (require 'org-roam-protocol)
-  :custom
-  (org-roam-directory (concat dropbox-directory "Documents/EmacsOrg/roam"))
-  :bind (("C-c n z" . org-roam-jump-to-index)
-         :map org-roam-mode-map
-         (("C-c n l" . org-roam)
-          ("C-c n f" . org-roam-find-file)
-          ("C-c n g" . org-roam-graph-show)
-          ("C-c n c" . org-roam-dailies-capture-today)
-          ("C-c n d" . org-roam-dailies-capture-date))
-         :map org-mode-map
-         (("C-c n i" . org-roam-insert)
-          ("C-c n I" . org-roam-insert-immediate))
-         ))
+;; (use-package org-roam
+;;   :ensure t
+;;   :after (org)
+;;   :hook
+;;   (after-init . org-roam-mode)
+;;   :init
+;;   (if (memq window-system '(mac ns))
+;;       (setq org-roam-graph-viewer "/usr/bin/open")
+;;     (setq org-roam-graph-viewer "google-chrome-stable"))
+;;   (setq org-roam-index-file "20201201230242-index.org")
+;;   ;; See Graphviz docs here:
+;;   ;;  https://graphviz.org/doc/info/attrs.html
+;;   ;; and related roam graph config doc here:
+;;   ;;  https://www.orgroam.com/manual.html#Graph-Options
+;;   (setq org-roam-graph-extra-config '(("rankdir" . "RL")))
+;;   (setq org-roam-graph-node-extra-config
+;;         '(("color" . "black")
+;;           ("fillcolor" . "lightgrey")
+;;           ("style" . "filled")
+;;           ("shape" . "box")))
+;;   (setq org-roam-graph-edge-extra-config '(("dir" . "back")))
+;;   (setq org-roam-graph-edge-cites-extra-config '(("color" . "red")))
+;;   (setq org-roam-db-location "~/temp/org-roam.db")
+;;   (setq org-roam-dailies-directory "daily/")
+;;   ;; (concat dropbox-directory "Documents/EmacsOrg/roam/daily")
+;;   (setq org-roam-dailies-capture-templates
+;;    `(("d" "default" entry
+;;       #'org-roam-capture--get-point
+;;       "* %?"
+;;       :file-name "daily/%<%Y-%m-%d>"
+;;       :head "#+title: %<%Y-%m-%d>\n\n")))
+;;   :config
+;;   (require 'org-roam-protocol)
+;;   :custom
+;;   (org-roam-directory (concat dropbox-directory "Documents/EmacsOrg/roam"))
+;;   :bind (("C-c n z" . org-roam-jump-to-index)
+;;          :map org-roam-mode-map
+;;          (("C-c n l" . org-roam)
+;;           ("C-c n f" . org-roam-find-file)
+;;           ("C-c n g" . org-roam-graph-show)
+;;           ("C-c n c" . org-roam-dailies-capture-today)
+;;           ("C-c n d" . org-roam-dailies-capture-date))
+;;          :map org-mode-map
+;;          (("C-c n i" . org-roam-insert)
+;;           ("C-c n I" . org-roam-insert-immediate))
+;;          ))
 
-(defun my-org-protocol-focus-advice (orig &rest args)
-  (x-focus-frame nil)
-  (apply orig args))
+;; (defun my-org-protocol-focus-advice (orig &rest args)
+;;   (x-focus-frame nil)
+;;   (apply orig args))
 
-(advice-add 'org-roam-protocol-open-ref :around
-            #'my-org-protocol-focus-advice)
-(advice-add 'org-roam-protocol-open-file :around
-            #'my-org-protocol-focus-advice)
+;; (advice-add 'org-roam-protocol-open-ref :around
+;;             #'my-org-protocol-focus-advice)
+;; (advice-add 'org-roam-protocol-open-file :around
+;;             #'my-org-protocol-focus-advice)
 
-(setq bibtex-completion-bibliography
-      `(,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/default.bib")
-        ,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/zotero.bib"))
-      bibtex-completion-library-path "~/temp/pdf"
-      bibtex-completion-notes-path "~/Dropbox/Documents/EmacsOrg/ref-notes")
+;; (setq bibtex-completion-bibliography
+;;       `(,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/default.bib")
+;;         ,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/zotero.bib"))
+;;       bibtex-completion-library-path "~/temp/pdf"
+;;       bibtex-completion-notes-path "~/Dropbox/Documents/EmacsOrg/ref-notes")
 
 
-;; ivy-bibtex for looking up and bibs and opening the corresponding URI/PDF
-(autoload 'ivy-bibtex "ivy-bibtex" "" t)
-(setq ivy-re-builders-alist
-      '((ivy-bibtex . ivy--regex-ignore-order)
-        (t . ivy--regex-plus)))
+;; ;; ivy-bibtex for looking up and bibs and opening the corresponding URI/PDF
+;; (autoload 'ivy-bibtex "ivy-bibtex" "" t)
+;; (setq ivy-re-builders-alist
+;;       '((ivy-bibtex . ivy--regex-ignore-order)
+;;         (t . ivy--regex-plus)))
 
-(use-package org-ref
-  :ensure t
-  :config
-  (progn
-    (setq reftex-default-bibliography
-          `(,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/default.bib")
-            ,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/zotero.bib")))
-    (setq org-ref-default-bibliography
-          `(,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/default.bib")
-            ,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/zotero.bib"))
-          org-ref-bibliography-notes (concat dropbox-directory "Documents/EmacsOrg/roam/ref-notes/default.org")
-          org-ref-pdf-directory "~/temp/pdf")
-    ))
+;; (use-package org-ref
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (setq reftex-default-bibliography
+;;           `(,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/default.bib")
+;;             ,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/zotero.bib")))
+;;     (setq org-ref-default-bibliography
+;;           `(,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/default.bib")
+;;             ,(concat dropbox-directory "Documents/EmacsOrg/roam/ref/zotero.bib"))
+;;           org-ref-bibliography-notes (concat dropbox-directory "Documents/EmacsOrg/roam/ref-notes/default.org")
+;;           org-ref-pdf-directory "~/temp/pdf")
+;;     ))
 
-(use-package org-roam-bibtex
-  :hook (org-roam-mode . org-roam-bibtex-mode)
-  :bind (:map org-mode-map
-              (("C-c ) a" . orb-note-actions)
-               ("C-c ) i" . orb-insert)))
-  :config
-  (progn
-    (setq orb-note-actions-interface 'hydra))
-  :custom
-  (orb-templates
-      '(("r" "ref" plain (function org-roam-capture--get-point) "%?"
-         :file-name "ref-notes/${citekey}"
-         :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}\n#+CREATED: %U\n#+EDITED: %U\n#+ROAM_TAGS: \n* Notes on ${citekey}\n :PROPERTIES:\n :Custom_ID:  ${citekey}\n :END:\n"
-        :unnarrowed t
-        :immediate-finish t))))
+;; (use-package org-roam-bibtex
+;;   :hook (org-roam-mode . org-roam-bibtex-mode)
+;;   :bind (:map org-mode-map
+;;               (("C-c ) a" . orb-note-actions)
+;;                ("C-c ) i" . orb-insert)))
+;;   :config
+;;   (progn
+;;     (setq orb-note-actions-interface 'hydra))
+;;   :custom
+;;   (orb-templates
+;;       '(("r" "ref" plain (function org-roam-capture--get-point) "%?"
+;;          :file-name "ref-notes/${citekey}"
+;;          :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}\n#+CREATED: %U\n#+EDITED: %U\n#+ROAM_TAGS: \n* Notes on ${citekey}\n :PROPERTIES:\n :Custom_ID:  ${citekey}\n :END:\n"
+;;         :unnarrowed t
+;;         :immediate-finish t))))
