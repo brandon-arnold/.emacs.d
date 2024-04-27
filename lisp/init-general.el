@@ -29,7 +29,8 @@
 
 ;; Show line numbers
 ;; (global-linum-mode)
-(line-number-mode)
+;; (line-number-mode)
+(global-display-line-numbers-mode)
 
 ;; Disable C-z for minimizing emacs
 (global-unset-key (kbd "C-z"))
