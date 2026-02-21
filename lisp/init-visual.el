@@ -6,8 +6,8 @@
 (setq-default cursor-type 'box)
 
 ;; (load-theme 'tsdh-dark t)
-;; (load-theme 'night-owl t)
-(load-theme 'charcoal-black t)
+(load-theme 'night-owl t)
+;; (load-theme 'charcoal-black t)
 ;; (load-theme 'ld-dark t)
 ;; (load-theme 'lawrence t)
 ;; (load-theme 'jsc-dark t)

@@ -87,3 +87,8 @@
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
 (add-hook 'doc-view-mode-hook (lambda() (linum-mode -1)))
 
+;; save files in progress
+(setq auto-save-default t)
+
+;; make lsp-bridge only work on specific modes
+(setq lsp-bridge-default-mode-hooks '(verilog-ext-mode vhdl-ext-mode))

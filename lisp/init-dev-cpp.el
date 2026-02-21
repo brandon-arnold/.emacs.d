@@ -7,4 +7,7 @@
 
 (use-package eglot
   :config
-  (add-to-list 'eglot-server-programs '((c++ mode c-mode) . "/usr/local/bin/ccls")))
+  (add-to-list 'eglot-server-programs '((c++ mode c-mode) . "/usr/local/bin/ccls"))
+  (setq-default tab-width 4))
+
+(setq-default c-basic-offset 4)

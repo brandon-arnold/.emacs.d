@@ -10,14 +10,42 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("0c71e4d0b5ad79a7cb155f180adcc93f2fe5ae3d3a863de7d3a8c898087d890c" default))
+   '("0c71e4d0b5ad79a7cb155f180adcc93f2fe5ae3d3a863de7d3a8c898087d890c"
+     default))
  '(elfeed-feeds '("https://www.with-emacs.com/rss.xml"))
  '(menu-bar-mode nil)
  '(minimap-always-recenter nil)
  '(minimap-width-fraction 0.15)
  '(minimap-window-location 'right)
  '(package-selected-packages
-   '(verilog-mode ace-window ag ample-regexps auctex auto-compile avy benchmark-init button-lock circe cmake-font-lock cmake-ide cmake-project color-theme-modern company company-solidity counsel counsel-projectile cpputils-cmake docker dockerfile-mode eglot elfeed elixir-mode exec-path-from-shell expand-region flycheck flycheck-color-mode-line flycheck-credo flycheck-dialyxir flycheck-dogma flycheck-elixir flycheck-popup-tip flymake flymake-solidity flymd free-keys haskell-mode helm helm-css-scss helm-flycheck helm-flyspell hide-lines htmlize hydra ivy ivy-bibtex ivy-hydra ivy-rich js2-mode js2-refactor json-mode less-css-mode lsp-haskell lsp-java lsp-mode lsp-ui lua-mode macrostep magit markdown-mode mmm-mode multiple-cursors night-owl-theme ob-elixir omnisharp org-ql org-ref org-super-agenda org-tree-slide paredit powershell prettier-js rainbow-delimiters realgud realgud-lldb restclient rjsx-mode rtags sass-mode slime smartparens solidity-flycheck solidity-mode sublimity swiper tern tide toc-org typescript-mode use-package visual-fill-column web-mode wgrep wgrep-ag xref-js2 yaml-mode yasnippet yasnippet-snippets zoom))
+   '(ace-window ag ample-regexps auctex auto-compile avy benchmark-init
+                button-lock circe claude-code cmake-font-lock
+                cmake-ide cmake-project color-theme-modern company
+                company-solidity counsel counsel-projectile
+                cpputils-cmake docker dockerfile-mode eat eglot elfeed
+                elixir-mode exec-path-from-shell expand-region
+                flycheck flycheck-color-mode-line flycheck-credo
+                flycheck-dialyxir flycheck-dogma flycheck-elixir
+                flycheck-popup-tip flymake flymake-solidity flymd
+                free-keys haskell-mode helm helm-css-scss
+                helm-flycheck helm-flyspell hide-lines htmlize hydra
+                inheritenv ivy ivy-bibtex ivy-hydra ivy-rich js2-mode
+                js2-refactor json-mode less-css-mode lsp-haskell
+                lsp-java lsp-mode lsp-ui lua-mode macrostep magit
+                markdown-mode mmm-mode monet multiple-cursors
+                night-owl-theme ob-elixir omnisharp org-ql org-ref
+                org-super-agenda org-tree-slide paredit powershell
+                prettier-js rainbow-delimiters realgud realgud-lldb
+                restclient rjsx-mode rtags sass-mode show-font slime
+                smartparens solidity-flycheck solidity-mode sublimity
+                sudo-edit swiper tern tide toc-org typescript-mode
+                use-package verilog-ext verilog-mode vhdl-ext
+                visual-fill-column vterm web-mode wgrep wgrep-ag
+                xref-js2 yaml-mode yasnippet yasnippet-snippets zoom))
+ '(package-vc-selected-packages
+   '((monet :url "https://github.com/stevemolitor/monet")
+     (claude-code :url
+                  "https://github.com/stevemolitor/claude-code.el")))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -25,11 +53,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack" :foundry "nil" :slant normal :weight normal :height 140 :width normal)))))
+ '(default ((t (:family "Hack" :foundry "nil" :slant normal :weight normal :height 100 :width normal)))))
+
+;; :height is 100 for the office monitors and 140 for the main laptop screen
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("org" . "http://orgmode.org/elpa/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
@@ -65,7 +96,6 @@
 
 (setq dropbox-directory (file-name-as-directory "~/Dropbox"))
 (setq dropbox-directory-exists? (file-exists-p dropbox-directory))
-
 ;; ignore package cl is deprecated warning
 (setq byte-compile-warnings '(cl-functions))
 
@@ -90,3 +120,4 @@
 (require 'toggle-window-split)
 ;; (require 'init-facebook)
 (require 'init-dev-verilog)
+(require 'init-claude)

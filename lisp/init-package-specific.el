@@ -50,9 +50,9 @@
     (browse-url url)))
 (setq flymd-browser-open-function 'my-flymd-browser-function)
 
-(use-package company
-  :init
-  (global-company-mode))
+;; (use-package company
+;;   :init
+;;   (global-company-mode))
 
 ;; (use-package lsp-mode
 ;;   :commands lsp
@@ -60,3 +60,8 @@
 
 ;; (use-package lsp-ui :commands lsp-ui-mode)
 ;; (use-package company-lsp :commands company-lsp)
+
+(add-to-list 'load-path "~/.emacs.d/packages/lsp-bridge")
+(require 'lsp-bridge)
+(global-lsp-bridge-mode)
+
