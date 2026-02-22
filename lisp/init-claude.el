@@ -18,6 +18,8 @@
   :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
   :init
   (setq claude-code-terminal-backend 'vterm)
+  ;; https://github.com/anthropics/claude-code/issues/15875
+  (setq claude-code-vterm-buffer-multiline-output nil)
   :config
   ;; optional IDE integration with Monet
   (add-hook 'claude-code-process-environment-functions #'monet-start-server-function)

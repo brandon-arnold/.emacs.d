@@ -31,7 +31,12 @@
           ports
           ))
   :config
-  (verilog-ext-mode-setup))
+  (verilog-ext-mode-setup)
+  ;; These are unconditionally bound in verilog-ext-mode-map (upstream bug)
+  ;; unlike the other nav keys which are guarded by verilog-ext-when-feature.
+  ;; They override standard Emacs word nav and error in non-verilog buffers.
+  (dolist (key '("TAB" "M-d" "M-f" "M-b" "C-<backspace>" "M-DEL"))
+    (define-key verilog-ext-mode-map (kbd key) nil)))
 (setq lsp-bridge-verilog-lsp-server "verible")
 (setq lsp-bridge-diagnostic-tooltip t)
 (setq lsp-bridge-diagnostic-inline t)

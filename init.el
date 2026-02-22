@@ -67,8 +67,7 @@
 ;(when (memq window-system '(mac ns x))
 ;  (exec-path-from-shell-initialize))
 
-;; Figure out why the above exec-path-from-shell-initialize isn't finding nvm's node and get rid of the following
-(setq exec-path (append exec-path '("~/.nvm/versions/node/v10.13.0/bin")))
+(add-to-list 'exec-path (expand-file-name "~/.local/bin"))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -93,6 +92,13 @@
     (unless (package-installed-p package)
       (package-install package))))
 (install-packages)
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (or (memq window-system '(x pgtk))  ; Linux GUI
+            (daemonp))                       ; if using emacs --daemon
+    (exec-path-from-shell-initialize)))
 
 (setq dropbox-directory (file-name-as-directory "~/Dropbox"))
 (setq dropbox-directory-exists? (file-exists-p dropbox-directory))
