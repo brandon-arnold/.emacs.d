@@ -29,10 +29,9 @@
 ;; :height is 100 for the office monitors and 140 for the main laptop screen
 (require 'package)
 (setq package-enable-at-startup nil)
-(setq package-archives '(("org" . "http://orgmode.org/elpa/")
-                         ("gnu" . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-                         ("melpa" . "http://melpa.org/packages/")))
+                         ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
 ;(when (memq window-system '(mac ns x))
