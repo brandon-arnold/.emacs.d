@@ -11,11 +11,13 @@
 (require 'dired-subtree)
 
 (use-package dired+
+  :ensure nil
   :load-path "~/.emacs.d/packages/dired+"
   :config
   (setq diredp-hide-details-initially-flag t))
 
-(use-package 'find-dired
+(use-package find-dired
+  :ensure nil
   :disabled t
   :config (setq find-ls-option '("-print0 | xargs -0 ls -ld" . "-ld")))
 

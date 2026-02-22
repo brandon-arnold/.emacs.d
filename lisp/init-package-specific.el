@@ -11,18 +11,19 @@
          ("C-:" . avy-goto-char)))
 
 (use-package magit
-  :ensure t
-  :bind (("C-x g" . magit))
-  :config)
+  :bind (("C-x g" . magit)))
 
 (use-package projectile
-  :ensure t
   :bind-keymap ("C-c p" . projectile-command-map)
   :init
   (setq projectile-completion-system 'ivy)
   :config
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  (projectile-mode +1)
+  (projectile-mode +1))
+
+(use-package counsel-projectile
+  :after projectile
+  :config
   (counsel-projectile-mode)
   (counsel-projectile-modify-action
    'counsel-projectile-switch-project-action
@@ -35,7 +36,6 @@
   (setq wgrep-auto-save-buffer t))
 
 (use-package yasnippet
-  :ensure t
   :config
   (yas-global-mode 1))
 
@@ -60,6 +60,16 @@
 
 ;; (use-package lsp-ui :commands lsp-ui-mode)
 ;; (use-package company-lsp :commands company-lsp)
+
+(use-package markdown-mode)
+
+(use-package json-mode)
+
+(use-package yaml-mode)
+
+(use-package restclient)
+
+(use-package htmlize)
 
 (add-to-list 'load-path "~/.emacs.d/packages/lsp-bridge")
 (require 'lsp-bridge)

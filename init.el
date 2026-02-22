@@ -17,35 +17,6 @@
  '(minimap-always-recenter nil)
  '(minimap-width-fraction 0.15)
  '(minimap-window-location 'right)
- '(package-selected-packages
-   '(ace-window ag ample-regexps auctex auto-compile avy benchmark-init
-                button-lock circe claude-code cmake-font-lock
-                cmake-ide cmake-project color-theme-modern company
-                company-solidity counsel counsel-projectile
-                cpputils-cmake docker dockerfile-mode eat eglot elfeed
-                elixir-mode exec-path-from-shell expand-region
-                flycheck flycheck-color-mode-line flycheck-credo
-                flycheck-dialyxir flycheck-dogma flycheck-elixir
-                flycheck-popup-tip flymake flymake-solidity flymd
-                free-keys haskell-mode helm helm-css-scss
-                helm-flycheck helm-flyspell hide-lines htmlize hydra
-                inheritenv ivy ivy-bibtex ivy-hydra ivy-rich js2-mode
-                js2-refactor json-mode less-css-mode lsp-haskell
-                lsp-java lsp-mode lsp-ui lua-mode macrostep magit
-                markdown-mode mmm-mode monet multiple-cursors
-                night-owl-theme ob-elixir omnisharp org-ql org-ref
-                org-super-agenda org-tree-slide paredit powershell
-                prettier-js rainbow-delimiters realgud realgud-lldb
-                restclient rjsx-mode rtags sass-mode show-font slime
-                smartparens solidity-flycheck solidity-mode sublimity
-                sudo-edit swiper tern tide toc-org typescript-mode
-                use-package verilog-ext verilog-mode vhdl-ext
-                visual-fill-column vterm web-mode wgrep wgrep-ag
-                xref-js2 yaml-mode yasnippet yasnippet-snippets zoom))
- '(package-vc-selected-packages
-   '((monet :url "https://github.com/stevemolitor/monet")
-     (claude-code :url
-                  "https://github.com/stevemolitor/claude-code.el")))
  '(scroll-bar-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -73,6 +44,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+(setq use-package-always-ensure t)
 
 ;; Uncomment to benchmark, then start emacs and M-x benchmark-init/show-durations-tabulated
 ;; (use-package benchmark-init
@@ -81,20 +53,7 @@
 ;;   ;; To disable collection of benchmark data after init is done.
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-;; Uncomment to ensure packages are installed on a new system's emacs setup
-;; TODO cause this to fail silently
-(defun install-packages ()
-  "Install all required packages."
-  (interactive)
-  (unless package-archive-contents
-    (package-refresh-contents))
-  (dolist (package package-selected-packages)
-    (unless (package-installed-p package)
-      (package-install package))))
-(install-packages)
-
 (use-package exec-path-from-shell
-  :ensure t
   :config
   (when (or (memq window-system '(x pgtk))  ; Linux GUI
             (daemonp))                       ; if using emacs --daemon

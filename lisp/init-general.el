@@ -67,8 +67,8 @@
 (global-set-key [(meta shift up)]  'move-line-up)
 (global-set-key [(meta shift down)]  'move-line-down)
 
-;; RSS reader
-(global-set-key (kbd "C-x w") 'elfeed)
+(use-package elfeed
+  :bind ("C-x w" . elfeed))
 
 ;; Occur
  (global-set-key (kbd "C-c o") 'occur)
@@ -89,6 +89,12 @@
 
 ;; save files in progress
 (setq auto-save-default t)
+
+(use-package sudo-edit)
+
+(use-package ag)
+
+(use-package free-keys)
 
 ;; make lsp-bridge only work on specific modes
 (setq lsp-bridge-default-mode-hooks '(verilog-ext-mode vhdl-ext-mode))

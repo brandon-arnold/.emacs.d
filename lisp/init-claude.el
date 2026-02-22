@@ -5,16 +5,16 @@
   :vc (:url "https://github.com/purcell/inheritenv" :rev :newest))
 
 ;; for eat terminal backend:
-(use-package eat :ensure t)
+(use-package eat)
 
 ;; for vterm terminal backend:
-(use-package vterm :ensure t)
+(use-package vterm)
 
 (use-package monet
   :vc (:url "https://github.com/stevemolitor/monet" :rev :newest))
 
 ;; install claude-code.el
-(use-package claude-code :ensure t
+(use-package claude-code
   :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
   :init
   (setq claude-code-terminal-backend 'vterm)

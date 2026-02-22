@@ -12,7 +12,7 @@
       (append (sa-find-org-file-recursively (concat dropbox-directory "Documents/EmacsOrg/agenda/"))))
 
 (use-package org
-  :ensure t
+  :ensure nil
   :mode ("\\.org\\(_archive\\)?\\(_[0-9]\\{6\\}\\)?\\'" . org-mode)
   :bind (("C-c l" . org-store-link)
          ("C-c c" . org-capture)
@@ -24,10 +24,10 @@
          ("C-c C-x C-r" . org-clock-report))
   :config
   (progn
-    (org-super-agenda-mode)
     (setq org-catch-invisible-edits 'show-and-error)
-    (setq org-agenda-clockreport-parameter-plist (plist-put org-agenda-clockreport-parameter-plist :fileskip0 t))
-    (setq org-agenda-clockreport-parameter-plist (org-plist-delete org-agenda-clockreport-parameter-plist :link))
+    (with-eval-after-load 'org-agenda
+      (setq org-agenda-clockreport-parameter-plist
+            (org-plist-delete (plist-put org-agenda-clockreport-parameter-plist :fileskip0 t) :link)))
     (setq org-archive-location "%s_archive::")
     (setq org-directory (file-name-as-directory (concat dropbox-directory "Documents/EmacsOrg")))
     (setq org-default-notes-file (concat org-directory "agenda/refile.org"))
@@ -102,7 +102,13 @@
            (file+olp+datetree ,(concat dropbox-directory "Documents/EmacsOrg/agenda/journal/p-monthly.org"))
            "* %?\nEntered on %U\n  %i\n" :tree-type month))))
 
+(use-package org-super-agenda
+  :after org
+  :config
+  (org-super-agenda-mode))
+
 (use-package org-archive
+  :ensure nil
   :config
   (progn
     (setq org-archive-paths (directory-files-recursively (concat dropbox-directory "Documents/EmacsOrg/agenda/archive") "[.]org_archive$"))
