@@ -23,6 +23,7 @@
 (use-package counsel
   :after ivy
   :bind (("C-x C-f" . counsel-find-file)
+         ("C-x C-r" . counsel-recentf)
          ("M-x" . counsel-M-x)
          ("M-y" . counsel-yank-pop)
          ("C-h f" . counsel-describe-function)))

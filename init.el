@@ -39,9 +39,6 @@
 
 (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
 (require 'use-package)
 (setq use-package-always-ensure t)
 
@@ -60,8 +57,6 @@
 
 (setq dropbox-directory (file-name-as-directory "~/Dropbox"))
 (setq dropbox-directory-exists? (file-exists-p dropbox-directory))
-;; ignore package cl is deprecated warning
-(setq byte-compile-warnings '(cl-functions))
 
 (setq load-path (cons "~/.emacs.d/lisp/lib" load-path))
 (setq load-path (cons "~/.emacs.d/lisp" load-path))

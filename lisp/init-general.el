@@ -52,9 +52,8 @@
 (global-set-key "\M-n" "\C-u1\C-v")
 (global-set-key "\M-p" "\C-u1\M-v")
 
-;; Highlight matching parens
+;; Highlight matching parens (show-paren-mode is on by default in Emacs 29+)
 (setq show-paren-delay 0)
-(show-paren-mode 1)
 
 ;; Turn off annoying windows ding
 (setq ring-bell-function 'ignore)
@@ -83,9 +82,6 @@
 (setq default-directory "~/")
 (setq command-line-default-directory "~/")
 
-;; Fix PDF View being unusable when linum-mode is enabled
-(add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
-(add-hook 'doc-view-mode-hook (lambda() (linum-mode -1)))
 
 ;; save files in progress
 (setq auto-save-default t)
@@ -95,6 +91,21 @@
 (use-package ag)
 
 (use-package free-keys)
+
+;; Persist minibuffer history across sessions
+(savehist-mode 1)
+
+;; Track recently opened files
+(recentf-mode 1)
+
+;; Show available keybindings after prefix key (built-in since Emacs 30)
+(which-key-mode 1)
+
+;; Allow repeating certain key sequences (e.g. C-x o o o to keep switching windows)
+(repeat-mode 1)
+
+;; Smooth pixel scrolling for mouse/trackpad
+(pixel-scroll-precision-mode 1)
 
 ;; make lsp-bridge only work on specific modes
 (setq lsp-bridge-default-mode-hooks '(verilog-ext-mode vhdl-ext-mode))
