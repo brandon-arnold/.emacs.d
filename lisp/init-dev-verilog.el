@@ -1,4 +1,9 @@
 
+(setq verilog-indent-level 2)
+
+(use-package apheleia
+  :hook (verilog-ext-mode . apheleia-mode))
+
 (use-package verilog-ext
   :hook ((verilog-mode . verilog-ext-mode))
   :init
@@ -29,17 +34,7 @@
           ports
           ))
   :config
-  (verilog-ext-mode-setup)
-  ;; These are unconditionally bound in verilog-ext-mode-map (upstream bug)
-  ;; unlike the other nav keys which are guarded by verilog-ext-when-feature.
-  ;; They override standard Emacs word nav and error in non-verilog buffers.
-  (dolist (key '("TAB" "M-d" "M-f" "M-b" "C-<backspace>" "M-DEL"))
-    (define-key verilog-ext-mode-map (kbd key) nil)))
-(setq lsp-bridge-verilog-lsp-server "verible")
-(setq lsp-bridge-diagnostic-tooltip t)
-(setq lsp-bridge-diagnostic-inline t)
-;; (add-to-list 'lsp-bridge-lang-server-mode-list '(verilog-mode . "verilog"))
-(global-lsp-bridge-mode)
+  (verilog-ext-mode-setup))
 
 (use-package vhdl-ext
   :hook ((vhdl-mode . vhdl-ext-mode))
@@ -67,5 +62,25 @@
           ports))
   :config
   (vhdl-ext-mode-setup))
+
+(setq lsp-bridge-default-mode-hooks '(verilog-ext-mode-hook vhdl-ext-mode-hook))
+(setq lsp-bridge-verilog-lsp-server "verible")
+(setq lsp-bridge-diagnostic-tooltip t)
+(setq lsp-bridge-diagnostic-inline t)
+(global-lsp-bridge-mode)
+
+;; lsp-bridge keybindings under C-c l prefix
+(define-prefix-command 'lsp-bridge-map)
+(global-set-key (kbd "C-c l") 'lsp-bridge-map)
+(define-key lsp-bridge-map (kbd "n") 'lsp-bridge-diagnostic-jump-next)
+(define-key lsp-bridge-map (kbd "p") 'lsp-bridge-diagnostic-jump-prev)
+(define-key lsp-bridge-map (kbd "c") 'lsp-bridge-diagnostic-copy)
+(define-key lsp-bridge-map (kbd "l") 'lsp-bridge-diagnostic-list)
+(define-key lsp-bridge-map (kbd "d") 'lsp-bridge-find-def)
+(define-key lsp-bridge-map (kbd "r") 'lsp-bridge-find-references)
+(define-key lsp-bridge-map (kbd "a") 'lsp-bridge-code-action)
+(define-key lsp-bridge-map (kbd "f") 'lsp-bridge-code-format)
+(define-key lsp-bridge-map (kbd "h") 'lsp-bridge-show-documentation)
+(define-key lsp-bridge-map (kbd "R") 'lsp-bridge-rename)
 
 (provide 'init-dev-verilog)

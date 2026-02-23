@@ -105,7 +105,4 @@
 ;; Smooth pixel scrolling for mouse/trackpad
 (pixel-scroll-precision-mode 1)
 
-;; make lsp-bridge only work on specific modes
-(setq lsp-bridge-default-mode-hooks '(verilog-ext-mode vhdl-ext-mode))
-
 (provide 'init-general)
