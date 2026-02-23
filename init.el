@@ -1,8 +1,6 @@
-;; (require 'server)
-;; (unless (server-running-p)
-;;   (server-start))
-
-;; TODO Find alternative to MELPA for org-roam and org-roam-bibtex 
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -34,11 +32,6 @@
                          ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
-;(when (memq window-system '(mac ns x))
-;  (exec-path-from-shell-initialize))
-
-(add-to-list 'exec-path (expand-file-name "~/.local/bin"))
-
 (require 'use-package)
 (setq use-package-always-ensure t)
 
@@ -49,6 +42,7 @@
 ;;   ;; To disable collection of benchmark data after init is done.
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
+(add-to-list 'exec-path (expand-file-name "~/.local/bin"))
 (use-package exec-path-from-shell
   :config
   (when (or (memq window-system '(x pgtk))  ; Linux GUI
@@ -60,10 +54,7 @@
 
 (setq load-path (cons "~/.emacs.d/lisp/lib" load-path))
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
-(setq load-path (cons "~/.emacs.d/lisp/emacswiki" load-path))
 ;; (setq load-path (cons "~/fbsource/fbcode/emacs_config" load-path))
-(setq load-path (cons "~/.emacs.d/lisp/ed-mode/" load-path))
-(require 'ed "ed-mode")
 (require 'init-general)
 (require 'init-visual)
 (require 'init-ivy)

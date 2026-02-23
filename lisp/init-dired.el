@@ -10,11 +10,8 @@
 (require 'dired-open)
 (require 'dired-subtree)
 
-(use-package dired+
-  :ensure nil
-  :load-path "~/.emacs.d/packages/dired+"
-  :config
-  (setq diredp-hide-details-initially-flag t))
+;; Hide file details by default (toggle with '(' in dired)
+(add-hook 'dired-mode-hook #'dired-hide-details-mode)
 
 (use-package find-dired
   :ensure nil
