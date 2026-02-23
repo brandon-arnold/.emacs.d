@@ -1,5 +1,3 @@
-(provide 'fira-code-ligatures)
-
 ;; Required when using emacs --daemon + emacsclient:
 (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
 ;; Required when using emacs without server/client:
@@ -127,3 +125,5 @@
 (defun add-fira-code-symbol-keywords ()
   (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
 (add-hook 'prog-mode-hook #'add-fira-code-symbol-keywords)
+
+(provide 'fira-code-ligatures)

@@ -1,5 +1,3 @@
-(provide 'init-facebook)
-
 (require 'flycheck)
 (require 'lua-mode)
 (require 'button-lock)
@@ -43,3 +41,5 @@
 
 (add-hook 'org-mode-hook 'set-up-intern-button)
 (global-button-lock-mode)
+
+(provide 'init-facebook)

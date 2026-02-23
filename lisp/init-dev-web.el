@@ -1,5 +1,3 @@
-(provide 'init-dev-web)
-
 (use-package js2-mode
   :init
   (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
@@ -90,3 +88,5 @@
   (setq web-mode-enable-css-colorization t))
 
 (use-package indium)
+
+(provide 'init-dev-web)

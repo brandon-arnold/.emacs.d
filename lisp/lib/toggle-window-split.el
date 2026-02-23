@@ -1,5 +1,3 @@
-(provide 'toggle-window-split)
-
 (defun toggle-window-split ()
   "Toggle a split window between horizontal and vertical split."
   (interactive)
@@ -28,3 +26,5 @@
 
 ;; Set to "C-x |"
 (global-set-key (kbd "C-x |") 'toggle-window-split)
+
+(provide 'toggle-window-split)

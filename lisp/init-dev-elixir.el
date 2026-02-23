@@ -1,5 +1,3 @@
-(provide 'init-dev-elixir)
-
 (use-package elixir-mode
   :mode "\\.exs?$"
   :config
@@ -16,3 +14,5 @@
   (setq alchemist-hooks-compile-on-save t)
   (setq alchemist-test-status-modeline t)
   :config)
+
+(provide 'init-dev-elixir)

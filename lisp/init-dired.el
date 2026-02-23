@@ -1,5 +1,3 @@
-(provide 'init-dired)
-
 (setq load-path (cons "~/.emacs.d/lisp/dired-hacks" load-path))
 
 (require 'dired-avfs)
@@ -20,3 +18,4 @@
 
 (setq wdired-allow-to-change-permissions t)
 
+(provide 'init-dired)

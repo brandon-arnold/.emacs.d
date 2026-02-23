@@ -1,5 +1,3 @@
-(provide 'sa-transpose-lines)
-
 ;; Sourced from suvayu's Github: https://raw.githubusercontent.com/suvayu/.emacs.d/master/lisp/nifty.el
 (defun sa-transpose-lines (arg)
   "More intuitive `transpose-lines'.  `arg' number of lines are
@@ -27,3 +25,5 @@ editing after the operation."
   (interactive "*p")
   ;; (message "arg: %s, %s" arg (- (or arg 1)))
   (sa-transpose-lines (- (or arg 1))))
+
+(provide 'sa-transpose-lines)

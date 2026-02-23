@@ -1,5 +1,3 @@
-(provide 'init-org)
-
 (require 'sa-org-functions)
 (require 'jt-org-split-time)
 
@@ -272,3 +270,5 @@ too."
 ;;          :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}\n#+CREATED: %U\n#+EDITED: %U\n#+ROAM_TAGS: \n* Notes on ${citekey}\n :PROPERTIES:\n :Custom_ID:  ${citekey}\n :END:\n"
 ;;         :unnarrowed t
 ;;         :immediate-finish t))))
+
+(provide 'init-org)

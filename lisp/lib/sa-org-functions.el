@@ -1,5 +1,3 @@
-(provide 'sa-org-functions)
-
 (defun sa-org-table-cell-to-left ()
   "Move current field in row to the left."
   (interactive)
@@ -171,3 +169,5 @@ If FILEXT is provided, return files with extension FILEXT instead."
 	(dolist (org-file (sa-find-org-file-recursively file-or-dir filext)
 			  org-file-list) ; add files found to result
 	  (add-to-list 'org-file-list org-file)))))))
+
+(provide 'sa-org-functions)

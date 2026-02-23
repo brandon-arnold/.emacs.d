@@ -1,5 +1,4 @@
 ;; https://github.com/justintaft/emacs-org-split-clock/blob/master/jt-org-split-time.el
-(provide 'jt-org-split-time)
 
 (defun jt/org-split-time-string-to-minutes (time-string)
   "Return minutes given a time string in format. 
@@ -105,3 +104,5 @@
     
     ;; Update timestamp to reflect new value
     (org-ctrl-c-ctrl-c)))
+
+(provide 'jt-org-split-time)

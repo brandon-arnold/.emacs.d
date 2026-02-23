@@ -1,5 +1,3 @@
-(provide 'functions)
-
 ;; In-place rename of file and buffer
 ;; http://steve.yegge.googlepages.com/my-dot-emacs-file
 (defun rename-file-and-buffer (new-name)
@@ -76,3 +74,5 @@ the sort order."
                                                            #'launch-separate-emacs-under-x
                                                          #'launch-separate-emacs-in-terminal)))))
     (save-buffers-kill-emacs)))
+
+(provide 'functions)

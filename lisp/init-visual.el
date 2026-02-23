@@ -1,5 +1,3 @@
-(provide 'init-visual)
-
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message "")
 (setq frame-title-format "%b - Emacs")
@@ -26,3 +24,5 @@
 
 (if (find-font (font-spec :name "Fira Code Symbol"))
     (require 'fira-code-ligatures))
+
+(provide 'init-visual)

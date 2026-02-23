@@ -1,5 +1,3 @@
-(provide 'init-dev-verilog)
-
 
 (use-package verilog-ext
   :hook ((verilog-mode . verilog-ext-mode))
@@ -69,3 +67,5 @@
           ports))
   :config
   (vhdl-ext-mode-setup))
+
+(provide 'init-dev-verilog)

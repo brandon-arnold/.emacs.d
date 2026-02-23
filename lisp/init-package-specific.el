@@ -1,5 +1,3 @@
-(provide 'init-package-specific)
-
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
@@ -75,3 +73,4 @@
 (require 'lsp-bridge)
 (global-lsp-bridge-mode)
 
+(provide 'init-package-specific)

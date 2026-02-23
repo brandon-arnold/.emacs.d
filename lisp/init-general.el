@@ -1,5 +1,3 @@
-(provide 'init-general)
-
 (require 'move-line)
 
 ;; Backups
@@ -109,3 +107,5 @@
 
 ;; make lsp-bridge only work on specific modes
 (setq lsp-bridge-default-mode-hooks '(verilog-ext-mode vhdl-ext-mode))
+
+(provide 'init-general)

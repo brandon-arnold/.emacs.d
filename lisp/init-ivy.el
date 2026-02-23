@@ -1,5 +1,3 @@
-(provide 'init-ivy)
-
 (use-package ivy
   :defer 0.1
   :diminish (ivy-mode . "")
@@ -37,3 +35,5 @@
   (ivy-rich-path-style 'abbrev)
   :config
   (ivy-rich-mode 1))
+
+(provide 'init-ivy)

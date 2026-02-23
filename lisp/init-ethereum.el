@@ -1,3 +1,3 @@
-(provide 'init-ethereum)
-
 (use-package solidity)
+
+(provide 'init-ethereum)

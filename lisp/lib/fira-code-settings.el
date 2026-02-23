@@ -1,5 +1,3 @@
-(provide 'fira-code-settings)
-
 ;; (when (window-system)
 ;;   (set-frame-font "Fira Code"))
 (let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
@@ -31,3 +29,5 @@
   (dolist (char-regexp alist)
     (set-char-table-range composition-function-table (car char-regexp)
                           `([,(cdr char-regexp) 0 font-shape-gstring]))))
+
+(provide 'fira-code-settings)
