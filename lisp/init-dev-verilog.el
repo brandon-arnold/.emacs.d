@@ -63,11 +63,11 @@
   :config
   (vhdl-ext-mode-setup))
 
-(setq lsp-bridge-default-mode-hooks '(verilog-ext-mode-hook vhdl-ext-mode-hook))
 (setq lsp-bridge-verilog-lsp-server "verible")
 (setq lsp-bridge-diagnostic-tooltip t)
 (setq lsp-bridge-diagnostic-inline t)
-(global-lsp-bridge-mode)
+(add-hook 'verilog-ext-mode-hook #'lsp-bridge-mode)
+(add-hook 'vhdl-ext-mode-hook #'lsp-bridge-mode)
 
 ;; lsp-bridge keybindings under C-c l prefix
 (define-prefix-command 'lsp-bridge-map)

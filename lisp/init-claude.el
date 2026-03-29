@@ -1,3 +1,4 @@
+
 ;; install required inheritenv dependency:
 (use-package inheritenv
   :vc (:url "https://github.com/purcell/inheritenv" :rev :newest))
@@ -18,7 +19,15 @@
   (setq claude-code-terminal-backend 'vterm)
   ;; https://github.com/anthropics/claude-code/issues/15875
   (setq claude-code-vterm-buffer-multiline-output nil)
+  ;; Focus the Claude buffer when starting a session
+  (setq claude-code-display-window-fn
+        (lambda (buffer)
+          (let ((window (display-buffer buffer '((display-buffer-below-selected)))))
+            (when window (select-window window))
+            window)))
   :config
+  ;; Disable line numbers in Claude session buffers
+  (add-hook 'claude-code-start-hook (lambda () (display-line-numbers-mode -1)))
   ;; optional IDE integration with Monet
   (add-hook 'claude-code-process-environment-functions #'monet-start-server-function)
   (monet-mode 1)

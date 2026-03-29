@@ -67,9 +67,6 @@
 (use-package elfeed
   :bind ("C-x w" . elfeed))
 
-;; Occur
- (global-set-key (kbd "C-c o") 'occur)
-
 ;; Highlight the row containing the cursor
 (global-hl-line-mode 1)
 
@@ -86,7 +83,15 @@
 
 (use-package sudo-edit)
 
-(use-package ag)
+(use-package ag
+  :config
+  ;; Emacs 30 changed compilation-filter to call compilation--ensure-parse
+  ;; BEFORE compilation-filter-hook. ag-filter needs to strip ANSI codes and
+  ;; insert File: markers before parsing, so we run it early via advice.
+  (define-advice compilation--ensure-parse (:before (_limit) ag-pre-filter)
+    (when (and (derived-mode-p 'ag-mode)
+               (bound-and-true-p compilation-filter-start))
+      (ag-filter))))
 
 (use-package free-keys)
 
@@ -104,5 +109,21 @@
 
 ;; Smooth pixel scrolling for mouse/trackpad
 (pixel-scroll-precision-mode 1)
+
+;; Copy "filepath:line" (or "filepath:start-end" for region) to kill ring
+(defun kill-file-line-reference ()
+  "Copy \"filepath:line\" (or \"filepath:start-end\" for region) to kill ring."
+  (interactive)
+  (let ((ref (if (use-region-p)
+                 (format "%s:%d-%d"
+                         (buffer-file-name)
+                         (line-number-at-pos (region-beginning))
+                         (line-number-at-pos (region-end)))
+               (format "%s:%d"
+                       (buffer-file-name)
+                       (line-number-at-pos)))))
+    (kill-new ref)
+    (message "%s" ref)))
+(global-set-key (kbd "C-c y") #'kill-file-line-reference)
 
 (provide 'init-general)

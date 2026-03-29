@@ -71,6 +71,5 @@
 
 (add-to-list 'load-path "~/.emacs.d/packages/lsp-bridge")
 (require 'lsp-bridge)
-(global-lsp-bridge-mode)
 
 (provide 'init-package-specific)

@@ -12,8 +12,9 @@
 (use-package org
   :ensure nil
   :mode ("\\.org\\(_archive\\)?\\(_[0-9]\\{6\\}\\)?\\'" . org-mode)
+  :hook (org-mode . (lambda () (display-line-numbers-mode -1)))
   :bind (("C-c l" . org-store-link)
-         ("C-c c" . org-capture)
+         ("C-c o c" . org-capture)
          ("C-c a" . org-agenda)
          ("C-," . org-cycle-agenda-files)
          ("C-c b" . org-switchb)
@@ -46,6 +47,7 @@
     (setq org-clock-persist-query-resume nil)
     (setq org-agenda-span 'day)
     (setq org-link-file-path-type 'relative)
+    (setq org-hide-emphasis-markers t)
     (add-to-list 'org-agenda-custom-commands
                  '("W" "Weekly review"
                    agenda ""
